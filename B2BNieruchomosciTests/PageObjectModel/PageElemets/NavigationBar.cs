@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
-using TestResources;
+
 
 namespace PageObjectModel.PageElemets
 {

@@ -15,13 +15,13 @@ namespace Tests
         public void GoTo()
         {
             LoginPage loginPage = new LoginPage(manager);
-            HomePage homePage = loginPage.SetLogin("admin@netrix.com.pl", "N@trix.765");
+            HomePage homePage = loginPage.SetLogin("test@test.com.pl", "test");
             UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN);
             string name = RandomString(5);
             string email = RandomString(5) + "@test.pl";
             string lastName = RandomString(7);
             UserListPage userPageAfterAddNewUser = userPage.AddNewUser(email, name, lastName);
-            userPageAfterAddNewUser.UsersTable.CheckCorrectAdd(name,email,lastName);
+           Assert.IsTrue(userPageAfterAddNewUser.UsersTable.CheckCorrectAdd(name,email,lastName));
         }
 
         private string RandomString(int lenght)

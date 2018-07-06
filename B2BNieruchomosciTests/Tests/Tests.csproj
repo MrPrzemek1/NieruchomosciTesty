@@ -74,6 +74,10 @@
       <Project>{9afc6135-03ac-4964-9e69-f5e445c5e7f3}</Project>
       <Name>PageObjectModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestResources\TestResources.csproj">
+      <Project>{CB8A6DCA-89ED-4B40-A161-DCCB1584365B}</Project>
+      <Name>TestResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
