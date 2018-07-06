@@ -9,8 +9,8 @@
     <ProjectGuid>{CB8A6DCA-89ED-4B40-A161-DCCB1584365B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>B2BNieruchomosciTests</RootNamespace>
-    <AssemblyName>B2BNieruchomosciTests</AssemblyName>
+    <RootNamespace>TestResources</RootNamespace>
+    <AssemblyName>TestResources</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
