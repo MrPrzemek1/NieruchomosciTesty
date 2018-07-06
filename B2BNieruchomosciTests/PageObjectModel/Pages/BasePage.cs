@@ -1,4 +1,4 @@
-﻿using B2BNieruchomosciTests;
+﻿using TestResources;
 
 namespace PageObjectModel
 {

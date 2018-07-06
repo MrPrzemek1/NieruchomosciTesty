@@ -1,7 +1,7 @@
-﻿using B2BNieruchomosciTests;
+﻿using TestResources;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using TestResources;
+
 
 namespace PageObjectModel
 {

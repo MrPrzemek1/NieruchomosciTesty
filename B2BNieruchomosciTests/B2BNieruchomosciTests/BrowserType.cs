@@ -1,4 +1,4 @@
-﻿namespace B2BNieruchomosciTests
+﻿namespace TestResources
 {
     public enum DriverType
     {

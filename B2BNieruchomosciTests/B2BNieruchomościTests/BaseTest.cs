@@ -1,7 +1,7 @@
-﻿using B2BNieruchomosciTests;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TestResources;
 
-namespace B2BNieruchomościTests
+namespace Tests
 {
     [TestFixture]
     public class BaseTest

@@ -1,10 +1,10 @@
-﻿using B2BNieruchomosciTests;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using PageObjectModel;
 using System;
 using System.Linq;
+using TestResources;
 
-namespace B2BNieruchomościTests
+namespace Tests
 {
     class UserListPageTest : BaseTest
     {

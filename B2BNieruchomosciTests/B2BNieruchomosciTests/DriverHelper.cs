@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace B2BNieruchomosciTests
+namespace TestResources
 {
     public static class DriverHelper
     {

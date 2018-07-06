@@ -1,4 +1,4 @@
-﻿using B2BNieruchomosciTests;
+﻿using TestResources;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;

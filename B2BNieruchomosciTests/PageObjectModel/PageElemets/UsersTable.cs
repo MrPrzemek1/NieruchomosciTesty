@@ -1,4 +1,4 @@
-﻿using B2BNieruchomosciTests;
+﻿using TestResources;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;

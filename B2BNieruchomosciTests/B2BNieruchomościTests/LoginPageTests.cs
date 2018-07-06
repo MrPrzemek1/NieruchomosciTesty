@@ -1,8 +1,9 @@
-﻿using B2BNieruchomosciTests;
+﻿
 using NUnit.Framework;
 using PageObjectModel;
+using TestResources;
 
-namespace B2BNieruchomościTests
+namespace Tests
 {
     [TestFixture]
     public class LoginPageTests : BaseTest

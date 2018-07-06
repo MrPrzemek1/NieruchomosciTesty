@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace B2BNieruchomosciTests
+namespace TestResources
 {
     public class DriverManager
     {

@@ -1,4 +1,4 @@
-﻿using B2BNieruchomosciTests;
+﻿using TestResources;
 using PageObjectModel.PageElemets;
 using SeleniumExtras.PageObjects;
 using System;
