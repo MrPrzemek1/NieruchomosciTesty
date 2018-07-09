@@ -10,12 +10,12 @@ namespace PageObjectModel
     {
         public UserListPage(DriverManager manager) : base(manager)
         {
-            Header = new Header(manager);
+            Header = new Headers(manager);
             UsersTable = new UsersTable(manager);
             PageFactory.InitElements(manager.Driver, this);
         }
 
-        public Header Header { get; }
+        public Headers Header { get; }
         public UsersTable UsersTable { get; }
         [FindsBy(How = How.Id, Using = PageElementsLocators.Email)]
         public IWebElement Email { get; private set; }

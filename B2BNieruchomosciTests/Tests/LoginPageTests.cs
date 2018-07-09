@@ -11,8 +11,8 @@ namespace Tests
         public LoginPageTests(DriverManager manager) : base(manager) { }
         public LoginPageTests() : base() { }
 
-        private string login = DataReaderHelper.GetLogin();
-        private string password = DataReaderHelper.GetPassword();
+        private readonly string login = DataReaderHelper.GetLogin();
+        private readonly string password = DataReaderHelper.GetPassword();
         [Test]
         public void CorrectLogin()
         {

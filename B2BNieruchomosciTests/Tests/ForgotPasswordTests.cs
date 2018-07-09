@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
 using PageObjectModel;
 using PageObjectModel.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestResources;
 
 namespace Tests
@@ -16,12 +11,33 @@ namespace Tests
         public ForgotPasswordTests(DriverManager manager) : base(manager) { }
 
         [Test]
-        public void TestTest()
+        public void CorrectResertPassword()
         {
             LoginPage loginPage = new LoginPage(manager);
             ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
-            var correctPasswordReset = forgotPasswordPage.SendPassword();
+            var correctPasswordReset = forgotPasswordPage.CorrectResertPassword();
             Assert.IsTrue(correctPasswordReset.CorrectPasswordResetText.Contains("Na podany adres, został wysłany"));
+        }
+        [Test]
+        public void EmptyEmailField()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
+            forgotPasswordPage.ConfirmButton.Click();
+            ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
+            Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorText);
+            Assert.AreEqual(pageAfterConfirmForm.ErrorField.EmptyEmailErrorText, "Pole jest wymagane.");
+        }
+        [Test]
+        public void WrongEmail()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
+            forgotPasswordPage.Email.SendKeys("lalala");
+            forgotPasswordPage.ConfirmButton.Click();
+            ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
+            Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorText);
+            Assert.AreEqual(pageAfterConfirmForm.ErrorField.EmptyEmailErrorText, "Adres email jest niepoprawny.");
         }
     }
 }

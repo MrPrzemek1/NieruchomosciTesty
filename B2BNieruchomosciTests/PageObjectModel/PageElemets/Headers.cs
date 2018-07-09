@@ -5,17 +5,17 @@ using SeleniumExtras.PageObjects;
 
 namespace PageObjectModel
 {
-    public class Header : BasePage
+    public class Headers : BasePage
     {
-        public Header(DriverManager manager) : base(manager)
+        public Headers(DriverManager manager) : base(manager)
         {
             PageFactory.InitElements(manager.Driver, this);
         }
 
         [FindsBy(How = How.ClassName, Using = PageElementsLocators.Header)]
-        public IWebElement header;
+        private IWebElement Header { get; set; }
 
-        public bool IsDisplay => header.Displayed;
-        public string Text => header.Text;
+        public bool IsDisplay => Header.Displayed;
+        public string Text => Header.Text;
     }
 }

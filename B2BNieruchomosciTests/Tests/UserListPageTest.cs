@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using PageObjectModel;
-using System;
-using System.Linq;
 using TestResources;
 using TestResources.Helpers;
 
@@ -22,7 +20,7 @@ namespace Tests
             string email = RandomDataHelper.RandomString(5) + "@test.pl";
             string lastName = RandomDataHelper.RandomString(7);
             UserListPage userPageAfterAddNewUser = userPage.AddNewUser(email, name, lastName);
-            Assert.IsFalse(userPageAfterAddNewUser.UsersTable.CheckCorrectAdd(name, email, lastName));
+            Assert.IsTrue(userPageAfterAddNewUser.UsersTable.GridContainsData(name, email, lastName));
         }
     }
 }

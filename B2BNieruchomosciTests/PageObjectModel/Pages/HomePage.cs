@@ -9,11 +9,11 @@ namespace PageObjectModel
     {
         public HomePage(DriverManager manager) : base(manager)
         {
-            Header = new Header(manager);
+            Header = new Headers(manager);
             NavigationBar = new NavigationBar(manager);
             PageFactory.InitElements(manager.Driver, this);
         }
-        public Header Header { get; set; }
+        public Headers Header { get; set; }
         private NavigationBar NavigationBar { get; set; }
 
         public T GoTo<T>(NavigationTo page) where T:class

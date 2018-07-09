@@ -1,7 +1,6 @@
 using TestResources;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using TestResources;
 using PageObjectModel.PageElemets;
 using PageObjectModel.Pages;
 
@@ -30,8 +29,7 @@ namespace PageObjectModel
             Login.SendKeys(login);
             Password.SendKeys(password);
             LoginButton.Click();
-            return new HomePage(driverManager);
-     
+            return new HomePage(driverManager);    
         }
         public LoginPage SetLoginData(string login, string password)
         {

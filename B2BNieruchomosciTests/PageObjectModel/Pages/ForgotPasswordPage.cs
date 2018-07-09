@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
+using PageObjectModel.PageElemets;
 using SeleniumExtras.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestResources;
 
 namespace PageObjectModel.Pages
@@ -13,19 +9,23 @@ namespace PageObjectModel.Pages
     {
         public ForgotPasswordPage(DriverManager manager) : base(manager)
         {
+            Header = new Headers(manager);
+            ErrorField = new ErrorsFields(manager);
             PageFactory.InitElements(manager.Driver,this);
         }
-        public Header header;
+        public Headers Header { get; }
+        public ErrorsFields ErrorField;
+
         [FindsBy(How = How.Id, Using = PageElementsLocators.Email)]
-        private IWebElement Email;
-        [FindsBy(How = How.Id, Using = PageElementsLocators.ConfirmButton)]
-        private IWebElement ConfirmButton;
+        public IWebElement Email;
+        [FindsBy(How = How.XPath, Using = PageElementsLocators.ConfirmButton)]
+        public IWebElement ConfirmButton;
         [FindsBy(How = How.ClassName, Using = PageElementsLocators.CorrectPasswordReset)]
         private IWebElement CorrectPasswordReset;
 
         public string CorrectPasswordResetText => CorrectPasswordReset.Text;
 
-        public ForgotPasswordPage SendPassword()
+        public ForgotPasswordPage CorrectResertPassword()
         {
             Email.SendKeys(RandomDataHelper.RandomString(7)+"@test.pl");
             ConfirmButton.Click();

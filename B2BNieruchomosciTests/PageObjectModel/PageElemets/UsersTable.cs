@@ -19,7 +19,7 @@ namespace PageObjectModel
 
         IList<IWebElement> AllCellsOnGrid => UsersGrid.FindElements(By.TagName("tr"));
 
-        public bool CheckCorrectAdd(string name,string lastName,string email)
+        public bool GridContainsData(string name,string lastName,string email)
         {
             DriverHelper.WaitUntil(driverManager.Driver,ExpectedConditions.ElementIsVisible(By.TagName("tr")));
             return AllCellsOnGrid.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
