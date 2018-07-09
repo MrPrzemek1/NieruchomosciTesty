@@ -12,7 +12,7 @@ namespace PageObjectModel
             PageFactory.InitElements(manager.Driver, this);
         }
 
-        [FindsBy(How = How.ClassName, Using = PageElementsLocators.Header)]
+        [FindsBy(How = How.ClassName, Using = PageElementsLocators.HeaderClass)]
         private IWebElement Header { get; set; }
 
         public bool IsDisplay => Header.Displayed;

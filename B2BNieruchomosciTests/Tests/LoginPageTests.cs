@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using PageObjectModel;
-using TestResources.Helpers;
 using TestResources;
 
 namespace Tests
@@ -11,8 +10,6 @@ namespace Tests
         public LoginPageTests(DriverManager manager) : base(manager) { }
         public LoginPageTests() : base() { }
 
-        private readonly string login = DataReaderHelper.GetLogin();
-        private readonly string password = DataReaderHelper.GetPassword();
         [Test]
         public void CorrectLogin()
         {

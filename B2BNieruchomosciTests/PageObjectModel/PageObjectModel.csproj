@@ -56,11 +56,13 @@
     <Compile Include="PageElemets\ErrorsFields.cs" />
     <Compile Include="PageElemets\Headers.cs" />
     <Compile Include="PageElemets\NavigationBar.cs" />
+    <Compile Include="Pages\Users\AddingUserFormPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Pages\ForgotPasswordPage.cs" />
+    <Compile Include="Pages\Users\EditUserPage.cs" />
+    <Compile Include="Pages\Login\ForgotPasswordPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\UserListPage.cs" />
+    <Compile Include="Pages\Login\LoginPage.cs" />
+    <Compile Include="Pages\Users\UserListPage.cs" />
     <Compile Include="PageElemets\UsersTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

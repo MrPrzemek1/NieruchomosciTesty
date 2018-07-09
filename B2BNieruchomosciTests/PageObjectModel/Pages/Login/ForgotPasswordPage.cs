@@ -16,11 +16,11 @@ namespace PageObjectModel.Pages
         public Headers Header { get; }
         public ErrorsFields ErrorField;
 
-        [FindsBy(How = How.Id, Using = PageElementsLocators.Email)]
+        [FindsBy(How = How.Id, Using = PageElementsLocators.EmailId)]
         public IWebElement Email;
-        [FindsBy(How = How.XPath, Using = PageElementsLocators.ConfirmButton)]
+        [FindsBy(How = How.XPath, Using = PageElementsLocators.ConfirmButtonXpath)]
         public IWebElement ConfirmButton;
-        [FindsBy(How = How.ClassName, Using = PageElementsLocators.CorrectPasswordReset)]
+        [FindsBy(How = How.ClassName, Using = PageElementsLocators.CorrectPasswordResetClass)]
         private IWebElement CorrectPasswordReset;
 
         public string CorrectPasswordResetText => CorrectPasswordReset.Text;

@@ -15,11 +15,11 @@ namespace PageObjectModel
         }
         public ErrorsFields ErrorFields { get; }
 
-        [FindsBy(How = How.Id, Using = PageElementsLocators.Email)]
+        [FindsBy(How = How.Id, Using = PageElementsLocators.EmailId)]
         private IWebElement Login;
-        [FindsBy(How = How.Id, Using = PageElementsLocators.LoginPassword)]
+        [FindsBy(How = How.Id, Using = PageElementsLocators.LoginPasswordId)]
         private IWebElement Password;
-        [FindsBy(How = How.XPath, Using = PageElementsLocators.LoginButton)]
+        [FindsBy(How = How.XPath, Using = PageElementsLocators.LoginButtonXpath)]
         private IWebElement LoginButton;
         [FindsBy(How=How.LinkText, Using =PageElementsLocators.ForgotPasswordLink)]
         private IWebElement ForgotPasswordLink;

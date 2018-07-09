@@ -15,5 +15,6 @@ namespace TestResources
             return new string(Enumerable.Repeat(chars, lenght)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
     }
 }

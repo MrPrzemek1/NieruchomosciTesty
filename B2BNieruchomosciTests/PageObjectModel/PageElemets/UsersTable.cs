@@ -14,15 +14,16 @@ namespace PageObjectModel
             PageFactory.InitElements(driverManager.Driver, this);
         }
     
-        [FindsBy(How = How.Id, Using = PageElementsLocators.UsersTable)]
+        [FindsBy(How = How.Id, Using = PageElementsLocators.UsersTableId)]
         private IWebElement UsersGrid { get; set; }
 
-        IList<IWebElement> AllCellsOnGrid => UsersGrid.FindElements(By.TagName("tr"));
+        public IList<IWebElement> AllRowsOnGrid => UsersGrid.FindElements(By.TagName("tr"));
+        public IList<IWebElement> AllCellsOnGrid => UsersGrid.FindElements(By.TagName("td"));
 
         public bool GridContainsData(string name,string lastName,string email)
         {
             DriverHelper.WaitUntil(driverManager.Driver,ExpectedConditions.ElementIsVisible(By.TagName("tr")));
-            return AllCellsOnGrid.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
+            return AllRowsOnGrid.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
         }
     }
 }

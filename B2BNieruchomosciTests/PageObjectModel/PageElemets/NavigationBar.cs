@@ -10,7 +10,7 @@ namespace PageObjectModel.PageElemets
     {
         public NavigationBar(DriverManager manager) : base(manager) { }
 
-        private IList<IWebElement> NavigationItem => driverManager.FindWebElementsAndWait(By.ClassName(PageElementsLocators.NavigationBar));
+        private IList<IWebElement> NavigationItem => driverManager.FindWebElementsAndWait(By.ClassName(PageElementsLocators.NavigationBarClass));
 
         private Dictionary<NavigationTo, string> NavigationDictionary = new Dictionary<NavigationTo, string>()
         {
