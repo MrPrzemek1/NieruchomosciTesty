@@ -1,6 +1,6 @@
 ﻿namespace TestResources
 {
-    public enum DriverType
+    public enum DriverTypeEnum
     {
         Chrome,
         Firefox,

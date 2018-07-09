@@ -3,6 +3,7 @@ using PageObjectModel;
 using System;
 using System.Linq;
 using TestResources;
+using TestResources.Helpers;
 
 namespace Tests
 {
@@ -12,24 +13,16 @@ namespace Tests
         public UserListPageTest() { }
 
         [Test]
-        public void GoTo()
+        public void AddingNewUser()
         {
             LoginPage loginPage = new LoginPage(manager);
-            HomePage homePage = loginPage.SetLogin("test@test.com.pl", "test");
+            HomePage homePage = loginPage.SetCorrectLoginData(DataReaderHelper.GetLogin(), DataReaderHelper.GetPassword());
             UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN);
-            string name = RandomString(5);
-            string email = RandomString(5) + "@test.pl";
-            string lastName = RandomString(7);
+            string name = RandomDataHelper.RandomString(5);
+            string email = RandomDataHelper.RandomString(5) + "@test.pl";
+            string lastName = RandomDataHelper.RandomString(7);
             UserListPage userPageAfterAddNewUser = userPage.AddNewUser(email, name, lastName);
-           Assert.IsTrue(userPageAfterAddNewUser.UsersTable.CheckCorrectAdd(name,email,lastName));
-        }
-
-        private string RandomString(int lenght)
-        {
-            Random random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, lenght)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            Assert.IsFalse(userPageAfterAddNewUser.UsersTable.CheckCorrectAdd(name, email, lastName));
         }
     }
 }

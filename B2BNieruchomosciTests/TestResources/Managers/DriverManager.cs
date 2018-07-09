@@ -11,9 +11,9 @@ namespace TestResources
     {
         private const string _baseUrl = "http://roger:7071";
 
-        public DriverType Type { get; private set; }
+        public DriverTypeEnum Type { get; private set; }
 
-        public DriverManager(DriverType type)
+        public DriverManager(DriverTypeEnum type)
         {
             Type = type;
             Driver = GetDriver(type);
@@ -23,16 +23,16 @@ namespace TestResources
 
         public string Title { get { return Driver.Title; } }
 
-        public IWebDriver GetDriver(DriverType driver)
+        public IWebDriver GetDriver(DriverTypeEnum driver)
         {
             switch (driver)
             {
-                case DriverType.Chrome:
+                case DriverTypeEnum.Chrome:
                     var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    var relativePath = @"..\..\..\B2BNieruchomosciTests\bin\debug";
+                    var relativePath = @"..\..\..\Tests\bin\debug";
                     var chromeDriverPath = Path.GetFullPath(Path.Combine(outPutDirectory, relativePath));
                     return new ChromeDriver(chromeDriverPath);
-                case DriverType.Firefox:
+                case DriverTypeEnum.Firefox:
                     return new FirefoxDriver();
                 default:
                     return new ChromeDriver();

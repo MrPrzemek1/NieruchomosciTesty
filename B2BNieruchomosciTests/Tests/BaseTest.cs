@@ -15,7 +15,7 @@ namespace Tests
         [OneTimeSetUp]
         public void SetUpTests()
         {
-            manager = new DriverManager(DriverType.Chrome);
+            manager = new DriverManager(DriverTypeEnum.Chrome);
             manager.GoTo();
         }
         [OneTimeTearDown]
