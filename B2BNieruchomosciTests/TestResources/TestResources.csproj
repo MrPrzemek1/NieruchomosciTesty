@@ -71,6 +71,7 @@
     <Compile Include="Locators\PageElementsLocators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\RandomDataHelper.cs" />
+    <Compile Include="WebElementExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

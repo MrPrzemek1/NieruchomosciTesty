@@ -12,7 +12,7 @@ namespace PageObjectModel
         public BasePage(DriverManager manager)
         {
             driverManager = manager;
-            wait = new WebDriverWait(manager.Driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(manager.Driver, TimeSpan.FromSeconds(20));
             wait.PollingInterval = TimeSpan.FromMilliseconds(100);
         }
     }

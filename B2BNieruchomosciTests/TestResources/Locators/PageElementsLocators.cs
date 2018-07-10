@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestResources
+﻿namespace TestResources
 {
     public static class PageElementsLocators
     {
@@ -22,6 +16,7 @@ namespace TestResources
         public const string NameId = "FirstName";
         public const string LastNameId = "LastName";
         public const string UsersTableId = "users-grid";
+        public const string CorrectPasswordResetMessageXpath = "//span[@data-notify='message']";
         //Edycja użytkownika
         public const string ReserPasswordButtonId = "reset-password-btn";
         public const string BlockUserButtonId = "lock-in-btn";

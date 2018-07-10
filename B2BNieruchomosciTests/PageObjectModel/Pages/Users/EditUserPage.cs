@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using PageObjectModel.PageElemets;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
@@ -23,13 +22,18 @@ namespace PageObjectModel
         private IWebElement LastName;
         [FindsBy(How = How.XPath, Using = PageElementsLocators.ConfirmButtonXpath)]
         public IWebElement ConfirmButton;
-
+        [FindsBy(How = How.Id, Using = PageElementsLocators.BlockUserButtonId)]
+        public IWebElement BlockUserButton;
+        [FindsBy(How = How.Id, Using = PageElementsLocators.UnblockUserButtonId)]
+        public IWebElement UnBlockUserButton;
+        [FindsBy(How = How.Id, Using = PageElementsLocators.ReserPasswordButtonId)]
+        public IWebElement ResetPasswordButton;
+        
         public void ChangeName(string name)
         {
             Name.Clear();
             Name.SendKeys(name);
         }
-
         public void ChangeLastName(string lastName)
         {
             LastName.Clear();
@@ -38,6 +42,24 @@ namespace PageObjectModel
         public UserListPage ConfirmEditUser()
         {
             ConfirmButton.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
+            return new UserListPage(driverManager);
+        }
+        public UserListPage BlockUser()
+        {
+            BlockUserButton.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
+            return new UserListPage(driverManager);
+        }
+        public UserListPage UnBlockUser()
+        {
+            UnBlockUserButton.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
+            return new UserListPage(driverManager);
+        }
+        public UserListPage ResetPassword()
+        {
+            ResetPasswordButton.Click();
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             return new UserListPage(driverManager);
         }

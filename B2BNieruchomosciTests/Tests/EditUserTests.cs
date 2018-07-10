@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using PageObjectModel;
 using TestResources;
-
+using System.Linq;
 namespace Tests
 {
     class EditUserTests:BaseTest
@@ -10,14 +10,11 @@ namespace Tests
         public EditUserTests() { }
         public EditUserTests(DriverManager manager) : base(manager) { }
 
-        [Test]
+        [Test, Order(1)]
         public void CorrectEditUser()
         {
-            LoginPage loginPage = new LoginPage(manager);
-            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            EditUserPage editUser = GoToUserEditPage();
 
-            EditUserPage editUser = userPage.GoToEditUser();
             string email = editUser.Header.Text;
             string newName = RandomDataHelper.RandomString(6);
             string lastName = RandomDataHelper.RandomString(6);
@@ -26,6 +23,44 @@ namespace Tests
             editUser.ChangeLastName(lastName);
             UserListPage userPageAfterEdit = editUser.ConfirmEditUser();
             Assert.IsTrue(userPageAfterEdit.UsersTable.GridContainsData(newName, lastName, email));
+        }
+        [Test, Order(2)]
+        public void BlockUser()
+        {
+            EditUserPage editUser = GoToUserEditPage();
+            string email = editUser.Header.Text;
+            UserListPage userList = editUser.BlockUser();
+            Assert.IsTrue(userList.UsersTable.AllRowsOnGrid.Any(e => e.Text.Contains(email)&&e.Text.Contains("Tak")));            
+        }
+        [Test, Order(3)]
+        public void UnBlockUser()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
+            UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            EditUserPage editUser = userPage.GoToBlockedUser();
+            string email = editUser.Header.Text;
+            UserListPage userList = editUser.UnBlockUser();
+            Assert.IsTrue(userPage.SuccessAlert.Displayed);
+            Assert.IsTrue(userPage.SuccessAlert.Text.Contains("Dane zostały zapisane"));
+            Assert.IsTrue(userList.UsersTable.AllRowsOnGrid.Any(e => e.Text.Contains(email) && e.Text.Contains("Nie")));
+        }
+        [Test, Order(4)]
+        public void PasswordReset()
+        {
+            EditUserPage editUser = GoToUserEditPage();
+            UserListPage userPage = editUser.ResetPassword();
+            Assert.IsTrue(userPage.SuccessAlert.Displayed);
+            Assert.AreEqual(userPage.SuccessAlert.Text, "Wiadomość została wysłana");
+        }
+        private EditUserPage GoToUserEditPage()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
+            UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            EditUserPage editUser = userPage.GoToEditUser();
+
+            return editUser;
         }
     }
 }
