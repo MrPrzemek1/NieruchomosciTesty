@@ -42,25 +42,21 @@ namespace PageObjectModel
         public UserListPage ConfirmEditUser()
         {
             ConfirmButton.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             return new UserListPage(driverManager);
         }
         public UserListPage BlockUser()
         {
             BlockUserButton.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             return new UserListPage(driverManager);
         }
         public UserListPage UnBlockUser()
         {
             UnBlockUserButton.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             return new UserListPage(driverManager);
         }
         public UserListPage ResetPassword()
         {
             ResetPasswordButton.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             return new UserListPage(driverManager);
         }
     }

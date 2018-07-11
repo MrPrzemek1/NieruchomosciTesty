@@ -13,13 +13,13 @@ namespace PageObjectModel
         public UserListPage(DriverManager manager) : base(manager)
         {
             Header = new Headers(manager);
-            UsersTable = new UsersTable(manager);
+            UsersTable = new UsersGrid(manager);
             ErrorField = new ErrorsFields(manager);
             PageFactory.InitElements(manager.Driver, this);
         }
 
         public Headers Header { get; }
-        public UsersTable UsersTable { get; }
+        public UsersGrid UsersTable { get; }
         public EditUserPage EditUser { get; }
         public ErrorsFields ErrorField { get; }
         
@@ -36,7 +36,6 @@ namespace PageObjectModel
          
         public EditUserPage GoToEditUser()
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             UsersTable.AllRowsOnGrid.Where(e => e.Text.Contains("@") && !e.Text.Contains("@netrix.com.pl")).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(RandomElement()).Click();
             return new EditUserPage(driverManager);
         }
@@ -47,7 +46,6 @@ namespace PageObjectModel
 
         public EditUserPage GoToBlockedUser()
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("users-grid")));
             UsersTable.AllRowsOnGrid.Where(e => e.Text.Contains("Tak")).Select(e => e.FindWebElementAndWait(By.LinkText("Edytuj"))).FirstOrDefault().Click();
             return new EditUserPage(driverManager);
         }
@@ -56,7 +54,7 @@ namespace PageObjectModel
         {
             Random random = new Random();
             Console.WriteLine("Wielkosc kolekcji to: {0}",UsersTable.AllRowsOnGrid.Count);
-            int element = random.Next(3,10);
+            int element = random.Next(3,UsersTable.AllRowsOnGrid.Count);
             Console.WriteLine("Wylosowany element to {0}",element);
             return element;
         }
