@@ -31,6 +31,11 @@
         public const string ExistingEmailErrorFieldXpath = "//div[@class='validation-summary-errors text-danger']/ul/li";
         public const string EmptyNameErrorXpath = "//span[@data-valmsg-for='FirstName']";
         public const string EmptyLastNameErrorXpath = "//span[@data-valmsg-for='LastName']";
-
+        // Formularz dodawania/edycji nieruchomosci
+        public const string StreetId = "Street";
+        public const string PostCodeId = "PostCode";
+        public const string CityId = "CityId";
+        public const string StatusId = "StatusId";
+        public const string SubmitButtonXpath = "//input[@class='btn btn-primary']";
     }
 }

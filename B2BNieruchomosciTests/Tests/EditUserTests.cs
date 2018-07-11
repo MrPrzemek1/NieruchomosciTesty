@@ -53,6 +53,30 @@ namespace Tests
             Assert.IsTrue(userPage.SuccessAlert.Displayed);
             Assert.AreEqual(userPage.SuccessAlert.Text, "Wiadomość została wysłana");
         }
+        [Test]
+        public void EmptyNameField()
+        {
+            EditUserPage editUser = GoToUserEditPage();
+            string lastName = RandomDataHelper.RandomString(6);
+            editUser.ChangeName(string.Empty);
+            editUser.ChangeLastName(lastName);
+            editUser.ConfirmButton.Click();
+            EditUserPage userPageAfterConfirmForm = new EditUserPage(manager);
+            Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyNameErrorField);
+            Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyNameErrorText, "Pole jest wymagane.");
+        }
+        [Test]
+        public void EmptyLastNameField()
+        {
+            EditUserPage editUser = GoToUserEditPage();
+            string name = RandomDataHelper.RandomString(6);
+            editUser.ChangeName(name);
+            editUser.ChangeLastName(string.Empty);
+            editUser.ConfirmButton.Click();
+            EditUserPage userPageAfterConfirmForm = new EditUserPage(manager);
+            Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyLastNameErrorField);
+            Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyLastNameErrorText, "Pole jest wymagane.");
+        }
         private EditUserPage GoToUserEditPage()
         {
             LoginPage loginPage = new LoginPage(manager);

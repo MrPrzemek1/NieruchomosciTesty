@@ -53,9 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NavigationEnum.cs" />
+    <Compile Include="PageElemets\BuildingGrid.cs" />
     <Compile Include="PageElemets\ErrorsFields.cs" />
     <Compile Include="PageElemets\Headers.cs" />
     <Compile Include="PageElemets\NavigationBar.cs" />
+    <Compile Include="Pages\Building\BuildingListPage.cs" />
+    <Compile Include="Pages\Building\CreateBuilding.cs" />
     <Compile Include="Pages\Users\AddingUserFormPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\Users\EditUserPage.cs" />
