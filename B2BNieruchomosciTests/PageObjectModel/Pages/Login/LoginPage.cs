@@ -1,5 +1,4 @@
 using TestResources;
-using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using PageObjectModel.PageElemets;
 using PageObjectModel.Pages;
@@ -10,37 +9,32 @@ namespace PageObjectModel
     {
         public LoginPage(DriverManager manager):base(manager)
         {
+            Button = new Buttons(manager);
+            Field = new FormsFields(manager);
             ErrorFields = new ErrorsFields(driverManager);
             PageFactory.InitElements(manager.Driver, this);
         }
         public ErrorsFields ErrorFields { get; }
-
-        [FindsBy(How = How.Id, Using = PageElementsLocators.EmailId)]
-        private IWebElement Login;
-        [FindsBy(How = How.Id, Using = PageElementsLocators.LoginPasswordId)]
-        private IWebElement Password;
-        [FindsBy(How = How.XPath, Using = PageElementsLocators.LoginButtonXpath)]
-        private IWebElement LoginButton;
-        [FindsBy(How=How.LinkText, Using =PageElementsLocators.ForgotPasswordLink)]
-        private IWebElement ForgotPasswordLink;
+        public Buttons Button { get; }
+        public FormsFields Field { get; }
 
         public HomePage SetCorrectLoginData(string login,string password)
         {
-            Login.SendKeys(login);
-            Password.SendKeys(password);
-            LoginButton.Click();
+            Field.Email.SendKeys(login);
+            Field.Password.SendKeys(password);
+            Button.Submit.Click();
             return new HomePage(driverManager);    
         }
         public LoginPage SetLoginData(string login, string password)
         {
-            Login.SendKeys(login);
-            Password.SendKeys(password);
-            LoginButton.Click();
+            Field.Email.SendKeys(login);
+            Field.Password.SendKeys(password);
+            Button.Submit.Click();
             return new LoginPage(driverManager);
         }
         public ForgotPasswordPage GoToForgotPasswordPage()
         {
-            ForgotPasswordLink.Click();
+            Button.ForgotPassword.Click();
             return new ForgotPasswordPage(driverManager);
         }
     }

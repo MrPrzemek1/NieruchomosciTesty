@@ -25,6 +25,7 @@ namespace Tests
             ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
             forgotPasswordPage.ConfirmButton.Click();
             ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
+
             Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorField);
             Assert.AreEqual(pageAfterConfirmForm.ErrorField.EmptyEmailErrorText, "Pole jest wymagane.");
         }
@@ -36,6 +37,7 @@ namespace Tests
             forgotPasswordPage.Email.SendKeys("lalala");
             forgotPasswordPage.ConfirmButton.Click();
             ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
+
             Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorField);
             Assert.AreEqual(pageAfterConfirmForm.ErrorField.EmptyEmailErrorText, "Adres email jest niepoprawny.");
         }

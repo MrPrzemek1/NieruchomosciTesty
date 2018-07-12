@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 using System;
 using TestResources;
-using System;
+
 namespace PageObjectModel
 {
     public class BasePage
@@ -14,9 +15,7 @@ namespace PageObjectModel
             driverManager = manager;
             wait = new WebDriverWait(manager.Driver, TimeSpan.FromSeconds(20));
             wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            
+            PageFactory.InitElements(manager.Driver,this);
         }
-
-
     }
 }

@@ -61,12 +61,12 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="BuildingPageTests.cs" />
-    <Compile Include="EditUserTests.cs" />
-    <Compile Include="ForgotPasswordTests.cs" />
-    <Compile Include="LoginPageTests.cs" />
+    <Compile Include="UsersTests\EditUserTests.cs" />
+    <Compile Include="LoginTests\ForgotPasswordTests.cs" />
+    <Compile Include="LoginTests\LoginPageTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserListPageTest.cs" />
+    <Compile Include="UsersTests\UserListPageTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -9,26 +9,30 @@ namespace PageObjectModel.Pages
     {
         public ForgotPasswordPage(DriverManager manager) : base(manager)
         {
+            Field = new FormsFields(manager);
+            Button = new Buttons(manager);
             Header = new Headers(manager);
             ErrorField = new ErrorsFields(manager);
             PageFactory.InitElements(manager.Driver,this);
         }
+
         public Headers Header { get; }
-        public ErrorsFields ErrorField;
 
-        [FindsBy(How = How.Id, Using = PageElementsLocators.EmailId)]
-        public IWebElement Email;
-        [FindsBy(How = How.XPath, Using = PageElementsLocators.ConfirmButtonXpath)]
-        public IWebElement ConfirmButton;
-        [FindsBy(How = How.ClassName, Using = PageElementsLocators.CorrectPasswordResetClass)]
-        private IWebElement CorrectPasswordReset;
+        public ErrorsFields ErrorField { get; }
 
-        public string CorrectPasswordResetText => CorrectPasswordReset.Text;
+        public Buttons Button { get; }
+
+        public FormsFields Field { get; }
+
+        [FindsBy(How = How.ClassName, Using = PageElementsLocators.CorrectPasswordResetStatementClass)]
+        private IWebElement CorrectPasswordResetStatemenet;
+
+        public string CorrectPasswordResetText => CorrectPasswordResetStatemenet.Text;
 
         public ForgotPasswordPage CorrectResertPassword()
         {
-            Email.SendKeys(RandomDataHelper.RandomString(7)+"@test.pl");
-            ConfirmButton.Click();
+            Field.Email.SendKeys(RandomDataHelper.RandomString(7)+"@test.pl");
+            Button.Submit.Click();
             return new ForgotPasswordPage(driverManager);
         }
     }

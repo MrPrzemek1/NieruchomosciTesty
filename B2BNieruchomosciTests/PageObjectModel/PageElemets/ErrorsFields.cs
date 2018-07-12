@@ -10,6 +10,7 @@ namespace PageObjectModel.PageElemets
         {
             PageFactory.InitElements(manager.Driver, this);
         }
+
         [FindsBy(How = How.XPath, Using = PageElementsLocators.WorngDataOrPasswordErrorFieldXpath)]
         private IWebElement WrongDataOrPassworError;
         public string WrongDataOrPassworErrorText => WrongDataOrPassworError.Text;

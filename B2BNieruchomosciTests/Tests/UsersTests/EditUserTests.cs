@@ -13,7 +13,7 @@ namespace Tests
         [Test, Order(1)]
         public void CorrectEditUser()
         {
-            EditUserPage editUser = GoToUserEditPage();
+            EditUserForm editUser = GoToUserEditPage();
 
             string email = editUser.Header.Text;
             string newName = RandomDataHelper.RandomString(6);
@@ -21,68 +21,68 @@ namespace Tests
 
             editUser.ChangeName(newName);
             editUser.ChangeLastName(lastName);
-            UserListPage userPageAfterEdit = editUser.ConfirmEditUser();
-            Assert.IsTrue(userPageAfterEdit.UsersTable.GridContainsData(newName, lastName, email));
+            UserPage userPageAfterEdit = editUser.SubmitEditUser();
+            Assert.IsTrue(userPageAfterEdit.Table.TableContainsData(newName, lastName, email));
         }
         [Test, Order(2)]
         public void BlockUser()
         {
-            EditUserPage editUser = GoToUserEditPage();
+            EditUserForm editUser = GoToUserEditPage();
             string email = editUser.Header.Text;
-            UserListPage userList = editUser.BlockUser();
-            Assert.IsTrue(userList.UsersTable.AllRowsOnGrid.Any(e => e.Text.Contains(email)&&e.Text.Contains("Tak")));            
+            UserPage userList = editUser.BlockUser();
+            Assert.IsTrue(userList.Table.AllRowsOnTable.Any(e => e.Text.Contains(email)&&e.Text.Contains("Tak")));            
         }
         [Test, Order(3)]
         public void UnBlockUser()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            EditUserPage editUser = userPage.GoToBlockedUser();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            EditUserForm editUser = userPage.GoToBlockedUser();
             string email = editUser.Header.Text;
-            UserListPage userList = editUser.UnBlockUser();
+            UserPage userList = editUser.UnBlockUser();
             Assert.IsTrue(userPage.SuccessAlert.Displayed);
             Assert.IsTrue(userPage.SuccessAlert.Text.Contains("Dane zostały zapisane"));
-            Assert.IsTrue(userList.UsersTable.AllRowsOnGrid.Any(e => e.Text.Contains(email) && e.Text.Contains("Nie")));
+            Assert.IsTrue(userList.Table.AllRowsOnTable.Any(e => e.Text.Contains(email) && e.Text.Contains("Nie")));
         }
         [Test, Order(4)]
         public void PasswordReset()
         {
-            EditUserPage editUser = GoToUserEditPage();
-            UserListPage userPage = editUser.ResetPassword();
+            EditUserForm editUser = GoToUserEditPage();
+            UserPage userPage = editUser.ResetPassword();
             Assert.IsTrue(userPage.SuccessAlert.Displayed);
             Assert.AreEqual(userPage.SuccessAlert.Text, "Wiadomość została wysłana");
         }
         [Test]
         public void EmptyNameField()
         {
-            EditUserPage editUser = GoToUserEditPage();
+            EditUserForm editUser = GoToUserEditPage();
             string lastName = RandomDataHelper.RandomString(6);
             editUser.ChangeName(string.Empty);
             editUser.ChangeLastName(lastName);
             editUser.ConfirmButton.Click();
-            EditUserPage userPageAfterConfirmForm = new EditUserPage(manager);
+            EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
             Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyNameErrorField);
             Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyNameErrorText, "Pole jest wymagane.");
         }
         [Test]
         public void EmptyLastNameField()
         {
-            EditUserPage editUser = GoToUserEditPage();
+            EditUserForm editUser = GoToUserEditPage();
             string name = RandomDataHelper.RandomString(6);
             editUser.ChangeName(name);
             editUser.ChangeLastName(string.Empty);
             editUser.ConfirmButton.Click();
-            EditUserPage userPageAfterConfirmForm = new EditUserPage(manager);
+            EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
             Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyLastNameErrorField);
             Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyLastNameErrorText, "Pole jest wymagane.");
         }
-        private EditUserPage GoToUserEditPage()
+        private EditUserForm GoToUserEditPage()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserListPage userPage = homePage.GoTo<UserListPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            EditUserPage editUser = userPage.GoToEditUser();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            EditUserForm editUser = userPage.GoToEditUser();
 
             return editUser;
         }

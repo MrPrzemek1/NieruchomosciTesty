@@ -17,9 +17,9 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            BuildingListPage buildingPage = homePage.GoTo<BuildingListPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
-            CreateBuilding createBuilding = buildingPage.GoToCreateBuildingForm();
-            BuildingListPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, postCode, city, "Aktywny");
+            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
+            CreateBuildingForm createBuilding = buildingPage.GoToCreateBuildingForm();
+            BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, postCode, city, "Aktywny");
             Assert.IsTrue(buildingPageAfterAddNewBuilding.IsCreationOfBuildingSuccesful(name, street, city, "Aktywny"));
         }
     }

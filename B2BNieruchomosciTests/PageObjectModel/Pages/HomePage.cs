@@ -16,6 +16,7 @@ namespace PageObjectModel
             PageFactory.InitElements(manager.Driver, this);
         }
         public Headers Header { get; set; }
+
         private NavigationBar NavigationBar { get; set; }
 
         public T GoTo<T>(NavigationTo page, By by) where T:class
