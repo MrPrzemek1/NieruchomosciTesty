@@ -23,7 +23,7 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
-            forgotPasswordPage.ConfirmButton.Click();
+            forgotPasswordPage.Button.Submit.Click();
             ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
 
             Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorField);
@@ -34,8 +34,8 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             ForgotPasswordPage forgotPasswordPage = loginPage.GoToForgotPasswordPage();
-            forgotPasswordPage.Email.SendKeys("lalala");
-            forgotPasswordPage.ConfirmButton.Click();
+            forgotPasswordPage.Field.Email.SendKeys("lalala");
+            forgotPasswordPage.Button.Submit.Click();
             ForgotPasswordPage pageAfterConfirmForm = new ForgotPasswordPage(manager);
 
             Assert.IsTrue(pageAfterConfirmForm.ErrorField.IsDisplayEmarilErrorField);

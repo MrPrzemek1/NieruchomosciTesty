@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using PageObjectModel.PageElemets;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 using TestResources;
 
 namespace PageObjectModel
@@ -32,22 +33,26 @@ namespace PageObjectModel
         }
         public UserPage SubmitEditUser()
         {
-            Button.Submit.Click();
+            Button.Submit.ClickIfElementIsClickable(driverManager.Driver);
+            WaitOnTableLoad();
             return new UserPage(driverManager);
         }
         public UserPage BlockUser()
         {
-            Button.BlockUser.Click();
+            Button.BlockUser.ClickIfElementIsClickable(driverManager.Driver);
+            WaitOnTableLoad();
             return new UserPage(driverManager);
         }
         public UserPage UnBlockUser()
         {
-            Button.UnBlockUser.Click();
+            Button.UnBlockUser.ClickIfElementIsClickable(driverManager.Driver);
+            WaitOnTableLoad();
             return new UserPage(driverManager);
         }
         public UserPage ResetPassword()
         {
-            Button.ResetPassword.Click();
+            Button.ResetPassword.ClickIfElementIsClickable(driverManager.Driver);
+            WaitOnTableLoad();
             return new UserPage(driverManager);
         }
     }

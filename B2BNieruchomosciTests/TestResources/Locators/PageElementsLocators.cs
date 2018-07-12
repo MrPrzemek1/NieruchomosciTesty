@@ -3,7 +3,7 @@
     public static class PageElementsLocators
     {
         //Uniwersalne lokatory
-        public const string BaseTableClass = "dx-datagrid-content";
+        public const string BaseTableClass = "dx-scrollable-container";
         public const string HeaderClass = "mt-4";
 
         //Pola formularzy

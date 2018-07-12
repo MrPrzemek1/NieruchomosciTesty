@@ -37,7 +37,7 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.ClassName(PageElementsLocators.BaseTableClass));
             EditUserForm editUser = userPage.GoToBlockedUser();
             string email = editUser.Header.Text;
             UserPage userList = editUser.UnBlockUser();
@@ -60,7 +60,7 @@ namespace Tests
             string lastName = RandomDataHelper.RandomString(6);
             editUser.ChangeName(string.Empty);
             editUser.ChangeLastName(lastName);
-            editUser.ConfirmButton.Click();
+            editUser.Button.Submit.Click();
             EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
             Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyNameErrorField);
             Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyNameErrorText, "Pole jest wymagane.");
@@ -72,7 +72,7 @@ namespace Tests
             string name = RandomDataHelper.RandomString(6);
             editUser.ChangeName(name);
             editUser.ChangeLastName(string.Empty);
-            editUser.ConfirmButton.Click();
+            editUser.Button.Submit.Click();
             EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
             Assert.IsTrue(userPageAfterConfirmForm.ErrorField.IsDisplayEmptyLastNameErrorField);
             Assert.AreEqual(userPageAfterConfirmForm.ErrorField.EmptyLastNameErrorText, "Pole jest wymagane.");
@@ -81,7 +81,7 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.ClassName(PageElementsLocators.BaseTableClass));
             EditUserForm editUser = userPage.GoToEditUser();
 
             return editUser;

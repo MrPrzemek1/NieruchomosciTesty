@@ -10,6 +10,7 @@ namespace Tests
     public class BaseTest
     {
         protected DriverManager manager;
+
         protected readonly string login = DataReaderHelper.GetLogin();
         protected readonly string password = DataReaderHelper.GetPassword();
         protected string name = RandomDataHelper.RandomString(5);
@@ -18,6 +19,7 @@ namespace Tests
         protected string street = RandomDataHelper.RandomString(7);
         protected string city = RandomDataHelper.RandomString(7);
         protected int postCode = RandomDataHelper.RandomPostCode();
+
         protected WebDriverWait wait;
 
         public BaseTest() { }

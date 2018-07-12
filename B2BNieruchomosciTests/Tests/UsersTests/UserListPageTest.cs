@@ -29,8 +29,8 @@ namespace Tests
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
             AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
 
-            addingUserForm.Name.SendKeys(name);
-            addingUserForm.LastName.SendKeys(lastName);
+            addingUserForm.Field.Name.SendKeys(name);
+            addingUserForm.Field.LastName.SendKeys(lastName);
             AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmarilErrorField);
@@ -44,8 +44,8 @@ namespace Tests
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
             AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
 
-            addingUserForm.Email.SendKeys(email);
-            addingUserForm.LastName.SendKeys(lastName);
+            addingUserForm.Field.Email.SendKeys(email);
+            addingUserForm.Field.LastName.SendKeys(lastName);
 
             AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
@@ -60,8 +60,8 @@ namespace Tests
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
             AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
 
-            addingUserForm.Name.SendKeys(name);
-            addingUserForm.Email.SendKeys(email);
+            addingUserForm.Field.Name.SendKeys(name);
+            addingUserForm.Field.Email.SendKeys(email);
             AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmptyLastNameErrorField);
@@ -76,9 +76,9 @@ namespace Tests
             string email = userPage.GetRandomExistingEmail();
             AddUserForm addingUser = userPage.GoToAddNewUserForm();
 
-            addingUser.Name.SendKeys(name);
-            addingUser.LastName.SendKeys(lastName);
-            addingUser.Email.SendKeys(email);
+            addingUser.Field.Name.SendKeys(name);
+            addingUser.Field.LastName.SendKeys(lastName);
+            addingUser.Field.Email.SendKeys(email);
 
             AddUserForm addingUserFormAfterConfirm = addingUser.ConfirmationIncorrectForm();
 
