@@ -13,10 +13,11 @@ namespace TestResources
             return new string(Enumerable.Repeat(chars, lenght)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static int RandomPostCode()
+        public static int RandomInt()
         {
             int randomnumber = random.Next(10000,20000);
             return randomnumber;
         }
+
     }
 }

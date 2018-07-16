@@ -17,7 +17,7 @@
         public const string EmailId = "Email";
         public const string LoginPasswordId = "Password";
         public const string OfficePriceId = "Price";
-
+        public const string OfficeAreaId = "Area";
         //Przyciski
         public const string AddButtonXpath = "//a[@class='btn btn-secondary']";
         public const string SubmitButtonXpath = "//input[@class='btn btn-primary']";

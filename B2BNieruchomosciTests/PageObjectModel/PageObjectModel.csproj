@@ -55,8 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPageElements.cs" />
-    <Compile Include="NavigationEnum.cs" />
+    <Compile Include="PageElemets\NavigationEnum.cs" />
     <Compile Include="PageElemets\Buttons.cs" />
     <Compile Include="PageElemets\ErrorsFields.cs" />
     <Compile Include="PageElemets\FormsFields.cs" />

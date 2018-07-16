@@ -19,7 +19,7 @@ namespace Tests
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
             CreateBuildingForm createBuilding = buildingPage.GoToCreateBuildingForm();
-            BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, postCode, city, "Aktywny");
+            BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, randomInt, city, "Aktywny");
             Assert.IsTrue(buildingPageAfterAddNewBuilding.IsCreationOfBuildingSuccesful(name, street, city, "Aktywny"));
         }
     }

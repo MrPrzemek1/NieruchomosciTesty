@@ -38,5 +38,10 @@ namespace PageObjectModel.PageElemets
         [FindsBy(How = How.Id, Using = PageElementsLocators.LoginPasswordId)]
         public IWebElement Password { get; private set; }
 
+        [FindsBy(How = How.Id, Using = PageElementsLocators.OfficePriceId)]
+        public IWebElement Price { get; private set; }
+
+        [FindsBy(How = How.Id, Using = PageElementsLocators.OfficeAreaId)]
+        public IWebElement Area { get; private set; }
     }
 }
