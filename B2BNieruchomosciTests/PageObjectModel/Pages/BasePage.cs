@@ -4,6 +4,8 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using System;
 using TestResources;
 using OpenQA.Selenium.Support.UI;
+using PageObjectModel.PageElemets;
+using System.Linq;
 
 namespace PageObjectModel
 {
@@ -22,6 +24,23 @@ namespace PageObjectModel
         protected void WaitOnTableLoad()
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(PageElementsLocators.BaseTableClass)));
+        }
+
+        public T GoTo<T>(string linkText = null)
+        { 
+            Tables table = new Tables(driverManager);
+            Buttons button = new Buttons(driverManager);
+
+            if (!string.IsNullOrEmpty(linkText))
+            {
+                table.AllRowsOnTable.Where(e => e.Text.Contains("Aktywny")).Select(e => e.FindElement(By.LinkText(linkText))).ElementAt(Table.RandomElement()).Click();
+            }
+            else
+            {
+                button.Add.ClickIfElementIsClickable(driverManager.Driver);
+            }
+
+            return (T)Activator.CreateInstance(typeof(T), driverManager);
         }
     }
 }

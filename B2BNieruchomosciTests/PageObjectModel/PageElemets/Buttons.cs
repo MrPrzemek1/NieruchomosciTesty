@@ -10,6 +10,7 @@ namespace PageObjectModel.PageElemets
         {
             PageFactory.InitElements(manager.Driver,this);
         }
+
         [FindsBy(How = How.XPath, Using = PageElementsLocators.AddButtonXpath)]
         public IWebElement Add { get; private set; }
 
@@ -28,9 +29,13 @@ namespace PageObjectModel.PageElemets
         [FindsBy(How = How.LinkText, Using = PageElementsLocators.ForgotPasswordLink)]
         public IWebElement ForgotPassword { get; private set; }
 
-        public void GoTo(string text)
-        {
-            Submit.FindElement(By.LinkText(text)).Click();
-        }
+        [FindsBy(How = How.LinkText, Using = PageElementsLocators.GoToOfficeButton)]
+        public IWebElement Office { get; private set; }
+
+        [FindsBy(How = How.LinkText, Using = PageElementsLocators.GoToResourceButton)]
+        public IWebElement Resource { get; private set; }
+
+        [FindsBy(How = How.LinkText, Using = PageElementsLocators.GoToMediaButton)]
+        public IWebElement Media { get; private set; }
     }
 }

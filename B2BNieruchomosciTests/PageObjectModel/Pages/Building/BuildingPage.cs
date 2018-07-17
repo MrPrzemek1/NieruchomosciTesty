@@ -19,12 +19,7 @@ namespace PageObjectModel.Pages.Building
         public Tables Table { get; }
         public Buttons Button { get; }
 
-        public CreateBuildingForm GoToCreateBuildingForm()
-        {
-            Button.Add.ClickIfElementIsClickable(driverManager.Driver);
-            return new CreateBuildingForm(driverManager);
-        }
-        public bool IsCreationOfBuildingSuccesful(string name, string street, string city, string status)
+        public bool ValueExistsInTable(string name, string street, string city, string status)
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id(PageElementsLocators.BaseTableClass)));
             return Table.AllRowsOnTable.Any(e => e.Text.Contains(name) && e.Text.Contains(street) && e.Text.Contains(city) && e.Text.Contains(status));

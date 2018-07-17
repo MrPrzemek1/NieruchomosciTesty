@@ -26,6 +26,9 @@
         public const string BlockUserButtonId = "lock-in-btn";
         public const string UnblockUserButtonId = "lock-out-btn";
         public const string GoToOfficeButton = "/Building/Office/List/e4a923adedc4a899";
+        public const string GoToResourceButton = "/Building/Resource/List/e4a923adedc4a899";
+        public const string GoToMediaButton = "/Building/Media/List/e4a923adedc4a899";
+
         //Strona główna
         public const string NavigationBarClass = "nav-link";
 

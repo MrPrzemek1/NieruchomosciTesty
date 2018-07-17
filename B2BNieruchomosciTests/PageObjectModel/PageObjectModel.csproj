@@ -66,6 +66,7 @@
     <Compile Include="Pages\Building\CreateBuildingForm.cs" />
     <Compile Include="Pages\Building\EditBuildingForm.cs" />
     <Compile Include="Pages\Building\Office\CreateOfficeForm.cs" />
+    <Compile Include="Pages\Building\Office\EditOfficeForm.cs" />
     <Compile Include="Pages\Building\Office\OfficePage.cs" />
     <Compile Include="Pages\Building\Resources\ResourcePage.cs" />
     <Compile Include="Pages\BasePage.cs" />

@@ -34,13 +34,13 @@ namespace PageObjectModel
         public EditUserForm GoToEditUser()
         {
             WaitOnTableLoad();
-            Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && !e.Text.Contains("@netrix.com.pl")&& !e.Text.Contains("TAK")).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(RandomElement()).Click();
+            Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && !e.Text.Contains("@netrix.com.pl")&& !e.Text.Contains("TAK")).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
             return new EditUserForm(driverManager);
         }
         public string GetRandomExistingEmail()
         {
             WaitOnTableLoad();
-            return Table.AllCellsOnTable.Where(e=>e.Text.Contains("@")).ElementAt(RandomElement()).Text;
+            return Table.AllCellsOnTable.Where(e=>e.Text.Contains("@")).ElementAt(Table.RandomElement()).Text;
         }
 
         public EditUserForm GoToBlockedUser()
@@ -48,15 +48,6 @@ namespace PageObjectModel
             WaitOnTableLoad();
             Table.AllRowsOnTable.Where(e => e.Text.Contains("Tak")).Select(e => e.FindWebElementAndWait(By.LinkText("Edytuj"))).FirstOrDefault().Click();
             return new EditUserForm(driverManager);
-        }
-
-        private int RandomElement()
-        {
-            Random random = new Random();
-            Console.WriteLine("Wielkosc kolekcji to: {0}",Table.AllRowsOnTable.Count);
-            int element = random.Next(1,Table.AllRowsOnTable.Count);
-            Console.WriteLine("Wylosowany element to {0}",element);
-            return element;
         }
     }
 }

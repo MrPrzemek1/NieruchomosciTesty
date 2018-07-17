@@ -24,7 +24,6 @@ namespace PageObjectModel
         public T GoTo<T>(NavigationTo page, By by) where T:class
         {
             NavigationBar.ChooseNavigationElement(page);
-            //wait.Until(ExpectedConditions.ElementIsVisible(by));
             return (T)Activator.CreateInstance(typeof(T),driverManager);
         }
     }

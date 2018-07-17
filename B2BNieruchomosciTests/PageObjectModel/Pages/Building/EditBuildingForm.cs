@@ -19,5 +19,12 @@ namespace PageObjectModel.Pages.Building
         public ResourcePage ResourcePage { get; }
         public Buttons Button { get; }
         public FormsFields Field { get; }
+
+        public OfficePage GoToOfficePage()
+        {
+            Button.Office.Click();
+            return new OfficePage(driverManager);
+        }
+
     }
 }

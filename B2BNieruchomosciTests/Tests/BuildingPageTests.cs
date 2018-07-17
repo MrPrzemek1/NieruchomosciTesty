@@ -22,5 +22,13 @@ namespace Tests
             BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, randomInt, city, "Aktywny");
             Assert.IsTrue(buildingPageAfterAddNewBuilding.IsCreationOfBuildingSuccesful(name, street, city, "Aktywny"));
         }
+        [Test]
+        public void testest()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
+            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
+            CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
+        }
     }
 }
