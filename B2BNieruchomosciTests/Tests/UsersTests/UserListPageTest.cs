@@ -19,7 +19,7 @@ namespace Tests
             AddUserForm addUserForm = userPage.GoToAddNewUserForm();
             addUserForm.SetNewUserData(email,name,lastName);
             UserPage userPageAfterAddNewUser = addUserForm.SubmitAddUserForm();
-            Assert.IsTrue(userPageAfterAddNewUser.Table.TableContainsData(name, email, lastName));
+            Assert.IsTrue(userPageAfterAddNewUser.Table.SprawdzanieWartosciWTabeli(name, email, lastName));
         }
         [Test]
         public void EmptyEmailFiled()

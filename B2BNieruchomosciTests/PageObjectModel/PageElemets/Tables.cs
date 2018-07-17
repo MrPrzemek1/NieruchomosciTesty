@@ -28,6 +28,11 @@ namespace PageObjectModel.PageElemets
             return AllRowsOnTable.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
         }
 
+        public bool SprawdzanieWartosciWTabeli(params string[] szukaneWartosci)
+        {
+            return AllRowsOnTable.Any(e => szukaneWartosci.All(sw => e.Text.Contains(sw)));
+        }
+
         public int RandomElement()
         {
             Random random = new Random();

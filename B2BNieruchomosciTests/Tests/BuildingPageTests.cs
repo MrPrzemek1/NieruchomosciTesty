@@ -18,9 +18,9 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
-            CreateBuildingForm createBuilding = buildingPage.GoToCreateBuildingForm();
+            CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
             BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, randomInt, city, "Aktywny");
-            Assert.IsTrue(buildingPageAfterAddNewBuilding.IsCreationOfBuildingSuccesful(name, street, city, "Aktywny"));
+            Assert.IsTrue(buildingPageAfterAddNewBuilding.ValueExistsInTable(name, street, city, "Aktywny"));
         }
         [Test]
         public void testest()

@@ -33,7 +33,7 @@ namespace PageObjectModel
 
             if (!string.IsNullOrEmpty(linkText))
             {
-                table.AllRowsOnTable.Where(e => e.Text.Contains("Aktywny")).Select(e => e.FindElement(By.LinkText(linkText))).ElementAt(Table.RandomElement()).Click();
+                table.AllRowsOnTable.Where(e => e.Text.Contains("Aktywny")).Select(e => e.FindElement(By.LinkText(linkText))).ElementAt(table.RandomElement()).Click();
             }
             else
             {

@@ -23,13 +23,13 @@ namespace PageObjectModel
         public void SetNewUserData(string email, string name, string lastName)
         {
             Field.Email.SendKeys(email);
-            Field.Name.SendKeys(name);
+            Field.FirstName.SendKeys(name);
             Field.LastName.SendKeys(lastName);
         }
         public UserPage SubmitAddUserForm()
         {
             Button.Submit.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id(PageElementsLocators.BaseTableClass)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(PageElementsLocators.BaseTableClass)));
             return new UserPage(driverManager);
         }
         public AddUserForm ConfirmationIncorrectForm()
