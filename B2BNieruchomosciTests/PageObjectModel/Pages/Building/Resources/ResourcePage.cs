@@ -10,9 +10,7 @@ namespace PageObjectModel.Pages.Building
         {
             Table = new Tables(manager);
             Button = new Buttons(manager);
-            PageFactory.InitElements(driverManager.Driver, this);
         }
-
         public Tables Table { get; }
         public Buttons Button { get; }
     }

@@ -62,12 +62,11 @@
     <Compile Include="PageElemets\Headers.cs" />
     <Compile Include="PageElemets\NavigationBar.cs" />
     <Compile Include="PageElemets\Tables.cs" />
+    <Compile Include="Pages\Building\BuildingForm.cs" />
     <Compile Include="Pages\Building\BuildingPage.cs" />
-    <Compile Include="Pages\Building\CreateBuildingForm.cs" />
-    <Compile Include="Pages\Building\EditBuildingForm.cs" />
-    <Compile Include="Pages\Building\Office\CreateOfficeForm.cs" />
-    <Compile Include="Pages\Building\Office\EditOfficeForm.cs" />
+    <Compile Include="Pages\Building\Office\OfficeForm.cs" />
     <Compile Include="Pages\Building\Office\OfficePage.cs" />
+    <Compile Include="Pages\Building\Resources\ResourceForm.cs" />
     <Compile Include="Pages\Building\Resources\ResourcePage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\Login\ForgotPasswordPage.cs" />

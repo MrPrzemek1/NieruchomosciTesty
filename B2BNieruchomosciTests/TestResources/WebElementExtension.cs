@@ -30,6 +30,10 @@ namespace TestResources
         {
             DriverHelper.WaitUntil(driver, ExpectedConditions.ElementToBeClickable(e)).Click();
         }
-
+        public static void ClearAndSendKeys(this IWebElement e, string text)
+        {
+            e.Clear();
+            e.SendKeys(text);
+        }
     }
 }
