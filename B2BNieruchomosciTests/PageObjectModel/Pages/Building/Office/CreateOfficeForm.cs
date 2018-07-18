@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using PageObjectModel.PageElemets;
-using SeleniumExtras.PageObjects;
 using TestResources;
 
 namespace PageObjectModel.Pages.Building
@@ -12,7 +11,6 @@ namespace PageObjectModel.Pages.Building
             Field = new FormsFields(manager);
             Button = new Buttons(manager);
             Error = new ErrorsFields(manager);
-            PageFactory.InitElements(manager.Driver, this);
         }
         public FormsFields Field { get; }
         public Buttons Button { get; }
@@ -25,6 +23,12 @@ namespace PageObjectModel.Pages.Building
             Field.Price.SendKeys(officePrice.ToString());
             Field.Area.SendKeys(officeArea.ToString());
             selectElement.SelectByText("Aktywny");
+            Button.Submit.Click();
+            WaitOnTableLoad();
+            return new OfficePage(driverManager);
+        }
+        private OfficePage SubmitForm()
+        {
             Button.Submit.Click();
             return new OfficePage(driverManager);
         }

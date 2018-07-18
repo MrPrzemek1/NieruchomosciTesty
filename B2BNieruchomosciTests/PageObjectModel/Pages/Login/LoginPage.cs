@@ -1,5 +1,4 @@
 using TestResources;
-using SeleniumExtras.PageObjects;
 using PageObjectModel.PageElemets;
 using PageObjectModel.Pages;
 
@@ -12,7 +11,6 @@ namespace PageObjectModel
             Button = new Buttons(manager);
             Field = new FormsFields(manager);
             ErrorFields = new ErrorsFields(driverManager);
-            PageFactory.InitElements(manager.Driver, this);
         }
         public ErrorsFields ErrorFields { get; }
         public Buttons Button { get; }

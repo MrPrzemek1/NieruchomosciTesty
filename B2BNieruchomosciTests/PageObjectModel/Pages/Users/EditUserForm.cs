@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using PageObjectModel.PageElemets;
-using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
+﻿using PageObjectModel.PageElemets;
 using TestResources;
 
 namespace PageObjectModel
@@ -14,14 +11,13 @@ namespace PageObjectModel
             Field = new FormsFields(manager);
             Header = new Headers(manager);
             ErrorField = new ErrorsFields(manager);
-            PageFactory.InitElements(manager.Driver,this);
         }
         public Headers Header { get; }
         public ErrorsFields ErrorField { get; }
         public FormsFields Field { get; }
         public Buttons Button { get; }
         
-        public void ChangeName(string name)
+        public void ChangeFirstName(string name)
         {
             Field.FirstName.Clear();
             Field.FirstName.SendKeys(name);
@@ -31,7 +27,7 @@ namespace PageObjectModel
             Field.LastName.Clear();
             Field.LastName.SendKeys(lastName);
         }
-        public UserPage SubmitEditUser()
+        public UserPage SubmitEditUserForm()
         {
             Button.Submit.ClickIfElementIsClickable(driverManager.Driver);
             WaitOnTableLoad();

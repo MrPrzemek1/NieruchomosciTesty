@@ -1,6 +1,5 @@
 ﻿using TestResources;
 using PageObjectModel.PageElemets;
-using SeleniumExtras.PageObjects;
 using System;
 
 namespace PageObjectModel
@@ -12,7 +11,6 @@ namespace PageObjectModel
             Header = new Headers(manager);
             Table = new Tables(manager);
             NavigationBar = new NavigationBar(manager);
-            PageFactory.InitElements(manager.Driver, this);
         }
         public Headers Header { get; }
         public Tables Table { get; }

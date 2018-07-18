@@ -19,10 +19,10 @@ namespace Tests
             string newName = RandomDataHelper.RandomString(6);
             string lastName = RandomDataHelper.RandomString(6);
 
-            editUser.ChangeName(newName);
+            editUser.ChangeFirstName(newName);
             editUser.ChangeLastName(lastName);
-            UserPage userPageAfterEdit = editUser.SubmitEditUser();
-            Assert.IsTrue(userPageAfterEdit.Table.TableContainsData(newName, lastName, email));
+            UserPage userPageAfterEdit = editUser.SubmitEditUserForm();
+            Assert.IsTrue(userPageAfterEdit.Table.IsDataExistsInTable(newName, lastName, email));
         }
         [Test, Order(2)]
         public void BlockUser()
@@ -35,9 +35,7 @@ namespace Tests
         [Test, Order(3)]
         public void UnBlockUser()
         {
-            LoginPage loginPage = new LoginPage(manager);
-            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            UserPage userPage = GoToUserPager();
             EditUserForm editUser = userPage.GoToBlockedUser();
             string email = editUser.Header.Text;
             UserPage userList = editUser.UnBlockUser();
@@ -45,6 +43,7 @@ namespace Tests
             Assert.IsTrue(userPage.SuccessAlert.Text.Contains("Dane zostały zapisane"));
             Assert.IsTrue(userList.Table.AllRowsOnTable.Any(e => e.Text.Contains(email) && e.Text.Contains("Nie")));
         }
+
         [Test, Order(4)]
         public void PasswordReset()
         {
@@ -58,7 +57,7 @@ namespace Tests
         {
             EditUserForm editUser = GoToEditUserForm();
             string lastName = RandomDataHelper.RandomString(6);
-            editUser.ChangeName(string.Empty);
+            editUser.ChangeFirstName(string.Empty);
             editUser.ChangeLastName(lastName);
             editUser.Button.Submit.Click();
             EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
@@ -70,7 +69,7 @@ namespace Tests
         {
             EditUserForm editUser = GoToEditUserForm();
             string name = RandomDataHelper.RandomString(6);
-            editUser.ChangeName(name);
+            editUser.ChangeFirstName(name);
             editUser.ChangeLastName(string.Empty);
             editUser.Button.Submit.Click();
             EditUserForm userPageAfterConfirmForm = new EditUserForm(manager);
@@ -85,6 +84,13 @@ namespace Tests
             EditUserForm editUser = userPage.GoToEditUser();
 
             return editUser;
+        }
+        private UserPage GoToUserPager()
+        {
+            LoginPage loginPage = new LoginPage(manager);
+            HomePage homePage = loginPage.SetCorrectLoginData(login, password);
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            return userPage;
         }
     }
 }

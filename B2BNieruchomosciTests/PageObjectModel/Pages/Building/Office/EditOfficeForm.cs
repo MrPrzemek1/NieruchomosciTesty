@@ -7,6 +7,9 @@ namespace PageObjectModel.Pages.Building
     {
         public EditOfficeForm(DriverManager manager) : base(manager)
         {
+            Field = new FormsFields(manager);
+            Button = new Buttons(manager);
+            Error = new ErrorsFields(manager);
         }
 
         public FormsFields Field { get; }
@@ -22,6 +25,7 @@ namespace PageObjectModel.Pages.Building
             Field.Area.Clear();
             Field.Area.SendKeys(area.ToString());
             Button.Submit.Click();
+            WaitOnTableLoad();
             return new OfficePage(driverManager);
         }
     }

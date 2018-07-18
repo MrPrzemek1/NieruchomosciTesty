@@ -21,23 +21,16 @@ namespace PageObjectModel.PageElemets
 
         public IList<IWebElement> AllCellsOnTable => Table.FindElements(By.TagName("td"));
 
-        public bool TableContainsData(string name, string lastName, string email)
-        {
-            WaitOnTableLoad();
-            return AllRowsOnTable.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
-        }
-
         public bool IsDataExistsInTable(params string[] szukaneWartosci)
         {
+            WaitOnTableLoad();
             return AllRowsOnTable.Any(e => szukaneWartosci.All(sw => e.Text.Contains(sw)));
         }
 
         public int RandomElement()
         {
             Random random = new Random();
-            Console.WriteLine("Wielkosc kolekcji to: {0}", AllRowsOnTable.Count);
             int element = random.Next(1, AllRowsOnTable.Count);
-            Console.WriteLine("Wylosowany element to {0}", element);
             return element;
         }
 

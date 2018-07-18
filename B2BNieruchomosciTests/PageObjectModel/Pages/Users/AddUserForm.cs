@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using PageObjectModel.PageElemets;
-using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
+﻿using PageObjectModel.PageElemets;
 using TestResources;
 
 namespace PageObjectModel
@@ -13,7 +10,6 @@ namespace PageObjectModel
             Button = new Buttons(manager);
             Field = new FormsFields(manager);
             ErrorsField = new ErrorsFields(manager);
-            PageFactory.InitElements(manager.Driver, this);
         }
 
         public ErrorsFields ErrorsField { get; }
@@ -29,7 +25,7 @@ namespace PageObjectModel
         public UserPage SubmitAddUserForm()
         {
             Button.Submit.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(PageElementsLocators.BaseTableClass)));
+            WaitOnTableLoad();
             return new UserPage(driverManager);
         }
         public AddUserForm ConfirmationIncorrectForm()
