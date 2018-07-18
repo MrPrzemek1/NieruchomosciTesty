@@ -16,9 +16,9 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
-            AddUserForm addUserForm = userPage.GoTo<AddUserForm>();
+            UserForm addUserForm = userPage.GoTo<UserForm>();
             addUserForm.SetNewUserData(email,name,lastName);
-            UserPage userPageAfterAddNewUser = addUserForm.SubmitAddUserForm();
+            UserPage userPageAfterAddNewUser = addUserForm.SubmitUserForm();
             Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTable(name, email, lastName));
         }
         [Test]
@@ -27,11 +27,11 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
-            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
+            UserForm addingUserForm = userPage.GoTo<UserForm>();
 
             addingUserForm.Field.FirstName.SendKeys(name);
             addingUserForm.Field.LastName.SendKeys(lastName);
-            AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
+            UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmarilErrorField);
             Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyEmailErrorText, "Pole jest wymagane.");
@@ -42,12 +42,12 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
-            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
+            UserForm addingUserForm = userPage.GoTo<UserForm>();
 
             addingUserForm.Field.Email.SendKeys(email);
             addingUserForm.Field.LastName.SendKeys(lastName);
 
-            AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
+            UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmptyNameErrorField);
             Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyNameErrorText, "Pole jest wymagane.");
@@ -58,10 +58,10 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
-            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
+            UserForm addingUserForm = userPage.GoTo<UserForm>();
             addingUserForm.Field.FirstName.SendKeys(name);
             addingUserForm.Field.Email.SendKeys(email);
-            AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
+            UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmptyLastNameErrorField);
             Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyLastNameErrorText, "Pole jest wymagane.");
@@ -73,13 +73,13 @@ namespace Tests
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
             string email = userPage.Table.GetRandomExistingEmail();
-            AddUserForm addingUser = userPage.GoTo<AddUserForm>();
+            UserForm addingUser = userPage.GoTo<UserForm>();
 
             addingUser.Field.FirstName.SendKeys(name);
             addingUser.Field.LastName.SendKeys(lastName);
             addingUser.Field.Email.SendKeys(email);
 
-            AddUserForm addingUserFormAfterConfirm = addingUser.ConfirmationIncorrectForm();
+            UserForm addingUserFormAfterConfirm = addingUser.ConfirmationIncorrectForm();
 
             Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayExistingEmailErrorField);
             Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.ExistingEmailErrorFieldText, "Konto z podanym adresem email już istnieje.");

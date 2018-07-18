@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using System;
 using TestResources;
@@ -19,7 +18,6 @@ namespace PageObjectModel
             driverManager = manager;
             wait = new WebDriverWait(manager.Driver, TimeSpan.FromSeconds(20));
             wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            PageFactory.InitElements(manager.Driver,this);
         }
         protected void WaitOnTableLoad()
         {

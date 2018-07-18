@@ -4,17 +4,9 @@ using TestResources;
 
 namespace PageObjectModel.Pages.Building
 {
-    public class OfficeForm : BasePage
+    public class OfficeForm : BaseForm
     {
-        public OfficeForm(DriverManager manager) : base(manager)
-        {
-            Field = new FormsFields(manager);
-            Button = new Buttons(manager);
-            Error = new ErrorsFields(manager);
-        }
-        public FormsFields Field { get; }
-        public Buttons Button { get; }
-        public ErrorsFields Error { get; }
+        public OfficeForm(DriverManager manager) : base(manager) { }
 
         public OfficePage AddNewOffice(string officeName, int officePrice, int officeArea)
         {

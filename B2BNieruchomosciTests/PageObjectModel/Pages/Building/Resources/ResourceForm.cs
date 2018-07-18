@@ -4,17 +4,9 @@ using TestResources;
 
 namespace PageObjectModel.Pages.Building.Resources
 {
-    class ResourceForm : BasePage
+    class ResourceForm : BaseForm
     {
-        public ResourceForm(DriverManager manager) : base(manager)
-        {
-            Field = new FormsFields(manager);
-            Button = new Buttons(manager);
-            Errors = new ErrorsFields(manager);
-        }
-        public FormsFields Field { get; }
-        public Buttons Button { get; }
-        public ErrorsFields Errors { get; }
+        public ResourceForm(DriverManager manager) : base(manager) { }
 
         public ResourcePage AddNewResource(string name, int price)
         {
@@ -22,6 +14,19 @@ namespace PageObjectModel.Pages.Building.Resources
             Field.Name.SendKeys(name);
             Field.Price.SendKeys(price.ToString());
             selectElement.SelectByText("Aktywny");
+            return SubmitForm();
+        }
+
+        public ResourcePage EditResource(string name, int price)
+        {
+            Field.Name.ClearAndSendKeys(name);
+            Field.Price.ClearAndSendKeys(price.ToString());
+            return SubmitForm();
+        }
+
+        private ResourcePage SubmitForm()
+        {
+            Button.Submit.Click();
             WaitOnTableLoad();
             return new ResourcePage(driverManager);
         }

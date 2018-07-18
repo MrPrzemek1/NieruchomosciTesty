@@ -1,37 +1,37 @@
-﻿using PageObjectModel.PageElemets;
+﻿using PageObjectModel.Pages;
 using TestResources;
 
 namespace PageObjectModel
 {
-    public class EditUserForm : BasePage
+    public class UserForm : BaseForm
     {
-        public EditUserForm(DriverManager manager) : base(manager)
+        public UserForm(DriverManager manager) : base(manager) { }
+
+        public void SetNewUserData(string email, string name, string lastName)
         {
-            Button = new Buttons(manager);
-            Field = new FormsFields(manager);
-            Header = new Headers(manager);
-            ErrorField = new ErrorsFields(manager);
-        }
-        public Headers Header { get; }
-        public ErrorsFields ErrorField { get; }
-        public FormsFields Field { get; }
-        public Buttons Button { get; }
-        
-        public void ChangeFirstName(string name)
-        {
-            Field.FirstName.Clear();
+            Field.Email.SendKeys(email);
             Field.FirstName.SendKeys(name);
-        }
-        public void ChangeLastName(string lastName)
-        {
-            Field.LastName.Clear();
             Field.LastName.SendKeys(lastName);
         }
-        public UserPage SubmitEditUserForm()
+
+        public UserPage EditUser(string email, string name, string lastName)
         {
-            Button.Submit.ClickIfElementIsClickable(driverManager.Driver);
+            Field.Email.ClearAndSendKeys(email);
+            Field.FirstName.ClearAndSendKeys(name);
+            Field.LastName.ClearAndSendKeys(lastName);
+            return SubmitUserForm();
+        }
+
+        public UserPage SubmitUserForm()
+        {
+            Button.Submit.Click();
             WaitOnTableLoad();
             return new UserPage(driverManager);
+        }
+        public UserForm ConfirmationIncorrectForm()
+        {
+            Button.Submit.Click();
+            return new UserForm(driverManager);
         }
         public UserPage BlockUser()
         {

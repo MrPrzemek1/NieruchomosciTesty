@@ -22,23 +22,25 @@ namespace PageObjectModel
 
         public IWebElement SuccessAlert => driverManager.FindWebElementAndWait(By.XPath(PageElementsLocators.CorrectPasswordResetMessageXpath));
 
-        public EditUserForm GoToEditUser()
+        public UserForm GoToEditUser()
         {
             WaitOnTableLoad();
             Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && !(e.Text.Contains("@netrix.com.pl"))&& !(e.Text.Contains("TAK"))).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
-            return new EditUserForm(driverManager);
+            return new UserForm(driverManager);
         }
 
-        public EditUserForm GoToBlockedUser()
+        public UserForm GoToBlockedUser()
         {
             WaitOnTableLoad();
             Table.AllRowsOnTable.Where(e => e.Text.Contains("Tak")).Select(e => e.FindWebElementAndWait(By.LinkText("Edytuj"))).FirstOrDefault().Click();
-            return new EditUserForm(driverManager);
+            return new UserForm(driverManager);
         }
 
-        public EditUserForm GoToUnBlockUser()
+        public UserForm GoToUnBlockUser()
         {
-            throw new NotImplementedException();
+            WaitOnTableLoad();
+            Table.AllRowsOnTable.Where(e => e.Text.Contains("Nie")).Select(e => e.FindWebElementAndWait(By.LinkText("Edytuj"))).FirstOrDefault().Click();
+            return new UserForm(driverManager);
         }
     }
 }

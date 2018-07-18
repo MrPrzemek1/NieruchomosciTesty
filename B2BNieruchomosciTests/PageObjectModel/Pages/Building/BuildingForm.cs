@@ -1,21 +1,11 @@
 ﻿using OpenQA.Selenium.Support.UI;
-using PageObjectModel.PageElemets;
 using TestResources;
 
 namespace PageObjectModel.Pages.Building
 {
-    public class BuildingForm : BasePage
+    public class BuildingForm : BaseForm
     {
-        public BuildingForm(DriverManager manager) : base(manager)
-        {
-            Button = new Buttons(manager);
-            Field = new FormsFields(manager);
-            Error = new ErrorsFields(manager);
-        }
-
-        public Buttons Button { get; }
-        public FormsFields Field { get; }
-        public ErrorsFields Error { get; }
+        public BuildingForm(DriverManager manager) : base(manager) { }
 
         public OfficePage GoToOfficePage()
         {
