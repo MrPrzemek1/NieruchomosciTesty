@@ -1,10 +1,8 @@
 ﻿using TestResources;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 using System.Linq;
 using PageObjectModel.PageElemets;
 using System;
-using SeleniumExtras.WaitHelpers;
 
 namespace PageObjectModel
 {
@@ -16,7 +14,6 @@ namespace PageObjectModel
             ErrorField = new ErrorsFields(manager);
             Buttons = new Buttons(manager);
             Table = new Tables(manager);
-            PageFactory.InitElements(manager.Driver, this);
         }
         public Buttons Buttons { get; }
         public Headers Header { get; }
@@ -25,22 +22,11 @@ namespace PageObjectModel
 
         public IWebElement SuccessAlert => driverManager.FindWebElementAndWait(By.XPath(PageElementsLocators.CorrectPasswordResetMessageXpath));
 
-        public AddUserForm GoToAddNewUserForm()
-        {
-            Buttons.Add.Click();
-            return new AddUserForm(driverManager);
-        }
-         
         public EditUserForm GoToEditUser()
         {
             WaitOnTableLoad();
-            Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && !e.Text.Contains("@netrix.com.pl")&& !e.Text.Contains("TAK")).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
+            Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && !(e.Text.Contains("@netrix.com.pl"))&& !(e.Text.Contains("TAK"))).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
             return new EditUserForm(driverManager);
-        }
-        public string GetRandomExistingEmail()
-        {
-            WaitOnTableLoad();
-            return Table.AllCellsOnTable.Where(e=>e.Text.Contains("@")).ElementAt(Table.RandomElement()).Text;
         }
 
         public EditUserForm GoToBlockedUser()
@@ -48,6 +34,11 @@ namespace PageObjectModel
             WaitOnTableLoad();
             Table.AllRowsOnTable.Where(e => e.Text.Contains("Tak")).Select(e => e.FindWebElementAndWait(By.LinkText("Edytuj"))).FirstOrDefault().Click();
             return new EditUserForm(driverManager);
+        }
+
+        public EditUserForm GoToUnBlockUser()
+        {
+            throw new NotImplementedException();
         }
     }
 }

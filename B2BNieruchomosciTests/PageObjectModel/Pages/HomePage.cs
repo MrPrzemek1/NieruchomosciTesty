@@ -2,9 +2,6 @@
 using PageObjectModel.PageElemets;
 using SeleniumExtras.PageObjects;
 using System;
-using SeleniumExtras.WaitHelpers;
-using OpenQA.Selenium;
-using System.Linq;
 
 namespace PageObjectModel
 {
@@ -21,7 +18,7 @@ namespace PageObjectModel
         public Tables Table { get; }
         private NavigationBar NavigationBar { get; }
 
-        public T GoTo<T>(NavigationTo page, By by) where T:class
+        public T GoTo<T>(NavigationTo page) where T:class
         {
             NavigationBar.ChooseNavigationElement(page);
             return (T)Activator.CreateInstance(typeof(T),driverManager);

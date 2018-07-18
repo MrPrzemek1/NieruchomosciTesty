@@ -15,21 +15,21 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            AddUserForm addUserForm = userPage.GoToAddNewUserForm();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            AddUserForm addUserForm = userPage.GoTo<AddUserForm>();
             addUserForm.SetNewUserData(email,name,lastName);
             UserPage userPageAfterAddNewUser = addUserForm.SubmitAddUserForm();
-            Assert.IsTrue(userPageAfterAddNewUser.Table.SprawdzanieWartosciWTabeli(name, email, lastName));
+            Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTable(name, email, lastName));
         }
         [Test]
         public void EmptyEmailFiled()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
 
-            addingUserForm.Field.Name.SendKeys(name);
+            addingUserForm.Field.FirstName.SendKeys(name);
             addingUserForm.Field.LastName.SendKeys(lastName);
             AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
@@ -41,8 +41,8 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
 
             addingUserForm.Field.Email.SendKeys(email);
             addingUserForm.Field.LastName.SendKeys(lastName);
@@ -57,10 +57,9 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            AddUserForm addingUserForm = userPage.GoToAddNewUserForm();
-
-            addingUserForm.Field.Name.SendKeys(name);
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            AddUserForm addingUserForm = userPage.GoTo<AddUserForm>();
+            addingUserForm.Field.FirstName.SendKeys(name);
             addingUserForm.Field.Email.SendKeys(email);
             AddUserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
@@ -72,11 +71,11 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN, By.Id("users-grid"));
-            string email = userPage.GetRandomExistingEmail();
-            AddUserForm addingUser = userPage.GoToAddNewUserForm();
+            UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
+            string email = userPage.Table.GetRandomExistingEmail();
+            AddUserForm addingUser = userPage.GoTo<AddUserForm>();
 
-            addingUser.Field.Name.SendKeys(name);
+            addingUser.Field.FirstName.SendKeys(name);
             addingUser.Field.LastName.SendKeys(lastName);
             addingUser.Field.Email.SendKeys(email);
 

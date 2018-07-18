@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +23,11 @@ namespace PageObjectModel.PageElemets
 
         public bool TableContainsData(string name, string lastName, string email)
         {
-            DriverHelper.WaitUntil(driverManager.Driver, ExpectedConditions.ElementIsVisible(By.TagName("tr")));
+            WaitOnTableLoad();
             return AllRowsOnTable.Any(e => e.Text.Contains(name) && e.Text.Contains(lastName) && e.Text.Contains(email));
         }
 
-        public bool SprawdzanieWartosciWTabeli(params string[] szukaneWartosci)
+        public bool IsDataExistsInTable(params string[] szukaneWartosci)
         {
             return AllRowsOnTable.Any(e => szukaneWartosci.All(sw => e.Text.Contains(sw)));
         }
@@ -40,6 +39,12 @@ namespace PageObjectModel.PageElemets
             int element = random.Next(1, AllRowsOnTable.Count);
             Console.WriteLine("Wylosowany element to {0}", element);
             return element;
+        }
+
+        public string GetRandomExistingEmail()
+        {
+            WaitOnTableLoad();
+            return AllCellsOnTable.Where(e => e.Text.Contains("@")).ElementAt(RandomElement()).Text;
         }
     }
 }

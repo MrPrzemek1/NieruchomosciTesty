@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
 using PageObjectModel;
 using PageObjectModel.Pages.Building;
 using TestResources;
@@ -17,17 +16,17 @@ namespace Tests
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
+            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI);
             CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
             BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, randomInt, city, "Aktywny");
-            Assert.IsTrue(buildingPageAfterAddNewBuilding.ValueExistsInTable(name, street, city, "Aktywny"));
+            Assert.IsTrue(buildingPageAfterAddNewBuilding.Table.IsDataExistsInTable(name, street, city, "Aktywny"));
         }
         [Test]
         public void testest()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
-            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI, By.Id("buildings-grid"));
+            BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI);
             CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
         }
     }

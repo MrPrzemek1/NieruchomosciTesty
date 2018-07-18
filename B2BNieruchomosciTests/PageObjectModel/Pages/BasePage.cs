@@ -39,7 +39,6 @@ namespace PageObjectModel
             {
                 button.Add.ClickIfElementIsClickable(driverManager.Driver);
             }
-
             return (T)Activator.CreateInstance(typeof(T), driverManager);
         }
     }
