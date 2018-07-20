@@ -14,12 +14,10 @@ namespace PageObjectModel
             Field.LastName.SendKeys(lastName);
         }
 
-        public UserPage EditUser(string email, string name, string lastName)
+        public void EditUser(string name, string lastName)
         {
-            Field.Email.ClearAndSendKeys(email);
             Field.FirstName.ClearAndSendKeys(name);
             Field.LastName.ClearAndSendKeys(lastName);
-            return SubmitUserForm();
         }
 
         public UserPage SubmitUserForm()

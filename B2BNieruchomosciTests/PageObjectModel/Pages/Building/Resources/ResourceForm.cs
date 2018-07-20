@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium.Support.UI;
-using PageObjectModel.PageElemets;
 using TestResources;
 
 namespace PageObjectModel.Pages.Building.Resources

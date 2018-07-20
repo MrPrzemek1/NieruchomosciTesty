@@ -17,7 +17,7 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI);
-            CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
+            BuildingForm createBuilding = buildingPage.GoTo<BuildingForm>();
             BuildingPage buildingPageAfterAddNewBuilding = createBuilding.CreateNewBuilding(name, street, randomInt, city, "Aktywny");
             Assert.IsTrue(buildingPageAfterAddNewBuilding.Table.IsDataExistsInTable(name, street, city, "Aktywny"));
         }
@@ -27,7 +27,7 @@ namespace Tests
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
             BuildingPage buildingPage = homePage.GoTo<BuildingPage>(NavigationTo.NIERUCHOMOSCI);
-            CreateBuildingForm createBuilding = buildingPage.GoTo<CreateBuildingForm>();
+            BuildingForm createBuilding = buildingPage.GoTo<BuildingForm>();
         }
     }
 }

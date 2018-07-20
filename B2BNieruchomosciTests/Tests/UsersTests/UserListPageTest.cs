@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
 using PageObjectModel;
 using TestResources;
 
@@ -22,7 +21,7 @@ namespace Tests
             Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTable(name, email, lastName));
         }
         [Test]
-        public void EmptyEmailFiled()
+        public void EmptyEmailFile()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
@@ -33,11 +32,11 @@ namespace Tests
             addingUserForm.Field.LastName.SendKeys(lastName);
             UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
-            Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmarilErrorField);
-            Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyEmailErrorText, "Pole jest wymagane.");
+            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayEmarilErrorField);
+            Assert.AreEqual(addingUserFormAfterConfirm.Error.EmptyEmailErrorText, "Pole jest wymagane.");
         }
         [Test]
-        public void EmptyNameFiled()
+        public void EmptyNameFile()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
@@ -49,11 +48,11 @@ namespace Tests
 
             UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
-            Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmptyNameErrorField);
-            Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyNameErrorText, "Pole jest wymagane.");
+            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayEmptyNameErrorField);
+            Assert.AreEqual(addingUserFormAfterConfirm.Error.EmptyNameErrorText, "Pole jest wymagane.");
         }
         [Test]
-        public void EmptyLastNameFiled()
+        public void EmptyLastNameFile()
         {
             LoginPage loginPage = new LoginPage(manager);
             HomePage homePage = loginPage.SetCorrectLoginData(login, password);
@@ -63,8 +62,8 @@ namespace Tests
             addingUserForm.Field.Email.SendKeys(email);
             UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
-            Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayEmptyLastNameErrorField);
-            Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.EmptyLastNameErrorText, "Pole jest wymagane.");
+            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayEmptyLastNameErrorField);
+            Assert.AreEqual(addingUserFormAfterConfirm.Error.EmptyLastNameErrorText, "Pole jest wymagane.");
         }
         [Test]
         public void CreateUserWithExistingEmail()
@@ -81,8 +80,8 @@ namespace Tests
 
             UserForm addingUserFormAfterConfirm = addingUser.ConfirmationIncorrectForm();
 
-            Assert.IsTrue(addingUserFormAfterConfirm.ErrorsField.IsDisplayExistingEmailErrorField);
-            Assert.AreEqual(addingUserFormAfterConfirm.ErrorsField.ExistingEmailErrorFieldText, "Konto z podanym adresem email już istnieje.");
+            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayExistingEmailErrorField);
+            Assert.AreEqual(addingUserFormAfterConfirm.Error.ExistingEmailErrorFieldText, "Konto z podanym adresem email już istnieje.");
         }
     }
     
