@@ -4,10 +4,10 @@ using TestResources;
 
 namespace Tests
 {
-    class UserListPageTest : BaseTest
+    class UserPageTest : BaseTest
     {
-        public UserListPageTest(DriverManager manager) : base(manager) { }
-        public UserListPageTest() { }
+        public UserPageTest(DriverManager manager) : base(manager) { }
+        public UserPageTest() { }
 
         [Test]
         public void CreateNewUser()
@@ -48,8 +48,8 @@ namespace Tests
 
             UserForm addingUserFormAfterConfirm = addingUserForm.ConfirmationIncorrectForm();
 
-            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayEmptyNameErrorField);
-            Assert.AreEqual(addingUserFormAfterConfirm.Error.EmptyNameErrorText, "Pole jest wymagane.");
+            Assert.IsTrue(addingUserFormAfterConfirm.Error.IsDisplayEmptyFirstNameErrorField);
+            Assert.AreEqual(addingUserFormAfterConfirm.Error.EmptyFirstNameErrorText, "Pole jest wymagane.");
         }
         [Test]
         public void EmptyLastNameFile()

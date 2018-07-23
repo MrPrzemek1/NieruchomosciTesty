@@ -25,7 +25,8 @@ namespace PageObjectModel
         public UserForm GoToEditUser()
         {
             WaitOnTableLoad();
-            Table.AllRowsOnTable.Where(e => e.Text.Contains("@") && (e.Text.Contains("@netrix.com.pl") == false) && (e.Text.Contains("Tak")==false)).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
+            var list = Table.AllRowsOnTable.Where(e => (e.Text.Contains("@")) && (e.Text.Contains("@netrix.com.pl") == false) && (e.Text.Contains("Tak") == false));
+            list.Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
             return new UserForm(driverManager);
         }
 

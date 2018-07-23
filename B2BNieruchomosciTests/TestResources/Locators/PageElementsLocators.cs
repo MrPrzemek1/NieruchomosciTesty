@@ -43,8 +43,12 @@
         public const string EmptyPasswordErrorFieldXpath = "//span[@data-valmsg-for='Password']";
         public const string EmptyEmailErrorFieldXpath = "//span[@data-valmsg-for='Email']";
         public const string ExistingEmailErrorFieldXpath = "//div[@class='validation-summary-errors text-danger']/ul/li";
-        public const string EmptyNameErrorXpath = "//span[@for='FirstName']";
+        public const string EmptyNameErrorXpath = "//span[@for='Name']";
+        public const string EmptyFirstNameErrorXpath = "//span[@for='FirstName']";
         public const string EmptyLastNameErrorXpath = "//span[@for='LastName']";
-
+        public const string EmptyStreetErrorFieldXpath = "//span[@for='Street']";
+        public const string EmptyPostCodeErrorFieldXpath = "//span[@for='PostCode']";
+        public const string EmptyCityFieldXpath = "//span[@for='City']";
+        public const string UnselectedStatusXpath = "//span[@for='Status']";
     }
 }

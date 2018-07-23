@@ -57,8 +57,8 @@ namespace Tests
             editUserForm.EditUser(string.Empty,lastName);
             editUserForm.ConfirmationIncorrectForm();
             UserForm userPageAfterConfirmForm = new UserForm(manager);
-            Assert.IsTrue(userPageAfterConfirmForm.Error.IsDisplayEmptyNameErrorField);
-            Assert.AreEqual(userPageAfterConfirmForm.Error.EmptyNameErrorText, "Pole jest wymagane.");
+            Assert.IsTrue(userPageAfterConfirmForm.Error.IsDisplayEmptyFirstNameErrorField);
+            Assert.AreEqual(userPageAfterConfirmForm.Error.EmptyFirstNameErrorText, "Pole jest wymagane.");
         }
         [Test]
         public void EmptyLastNameField()

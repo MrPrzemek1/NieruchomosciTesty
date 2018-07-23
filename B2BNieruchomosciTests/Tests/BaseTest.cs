@@ -18,7 +18,8 @@ namespace Tests
         protected string email = RandomDataHelper.RandomString(5) + "@test.pl";
         protected string street = RandomDataHelper.RandomString(7);
         protected string city = RandomDataHelper.RandomString(7);
-        protected int randomInt = RandomDataHelper.RandomInt();
+        protected int? randomInt = RandomDataHelper.RandomInt();
+
 
         protected WebDriverWait wait;
 

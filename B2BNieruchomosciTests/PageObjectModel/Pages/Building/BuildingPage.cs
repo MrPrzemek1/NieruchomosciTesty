@@ -1,4 +1,6 @@
-﻿using PageObjectModel.PageElemets;
+﻿using OpenQA.Selenium;
+using PageObjectModel.PageElemets;
+using System.Linq;
 using TestResources;
 
 namespace PageObjectModel.Pages.Building
@@ -12,5 +14,13 @@ namespace PageObjectModel.Pages.Building
         }
         public Tables Table { get; }
         public Buttons Button { get; }
+
+
+        public BuildingForm GoToEditBuilding()
+        {
+            WaitOnTableLoad();
+            Table.AllRowsOnTable.Where(e => !string.IsNullOrEmpty(e.Text)).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
+            return new BuildingForm(driverManager);
+        }
     }
 }

@@ -29,8 +29,11 @@ namespace PageObjectModel.PageElemets
 
         public int RandomElement()
         {
+            Console.WriteLine("Ilość wierszy: {0}",AllRowsOnTable.Count);
             Random random = new Random();
-            int element = random.Next(1, AllRowsOnTable.Count);
+            var list = AllRowsOnTable.Where(e => !String.IsNullOrEmpty(e.Text));
+            int element = random.Next(1, list.Count());
+            Console.WriteLine("Wybrany element: {0}", element);
             return element;
         }
 
