@@ -20,12 +20,6 @@ namespace PageObjectModel
             Field.LastName.ClearAndSendKeys(lastName);
         }
 
-        public UserPage SubmitUserForm()
-        {
-            Button.Submit.Click();
-            WaitOnTableLoad();
-            return new UserPage(driverManager);
-        }
         public UserForm ConfirmationIncorrectForm()
         {
             Button.Submit.Click();

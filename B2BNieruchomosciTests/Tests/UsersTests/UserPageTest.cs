@@ -17,7 +17,7 @@ namespace Tests
             UserPage userPage = homePage.GoTo<UserPage>(NavigationTo.ADMIN);
             UserForm addUserForm = userPage.GoTo<UserForm>();
             addUserForm.SetNewUserData(email,name,lastName);
-            UserPage userPageAfterAddNewUser = addUserForm.SubmitUserForm();
+            UserPage userPageAfterAddNewUser = addUserForm.SubmitForm<UserPage>();
             Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTable(name, email, lastName));
         }
         [Test]

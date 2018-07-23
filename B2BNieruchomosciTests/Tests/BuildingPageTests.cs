@@ -18,7 +18,8 @@ namespace Tests
             BuildingPage buildingPage = GoToBuildingPage();
             BuildingForm createBuildingForm = buildingPage.GoTo<BuildingForm>();
             createBuildingForm.FillInTeFormFields(name, street, randomInt, city, "Aktywny");
-            BuildingPage buildingPageAfterAddNewBuilding = createBuildingForm.SubmitBuildingForm();
+            BuildingPage buildingPageAfterAddNewBuilding = createBuildingForm.SubmitForm<BuildingPage>();
+
             Assert.IsTrue(buildingPageAfterAddNewBuilding.Table.IsDataExistsInTable(name, street, city, "Aktywny"));
         }
         [Test]
@@ -54,7 +55,7 @@ namespace Tests
         {
             BuildingPage buildingPage = GoToBuildingPage();
             BuildingForm createBuildingForm = buildingPage.GoTo<BuildingForm>();
-            createBuildingForm.FillInTeFormFields(name, street,null, city, "Aktywny");
+            createBuildingForm.FillInTeFormFields(name, street, null, city, "Aktywny");
             BuildingForm formAfterSubmit = createBuildingForm.SubmitIncorrectForm();
 
             Assert.IsTrue(formAfterSubmit.Error.IsDisplayEmptyPostCodeErrorField);

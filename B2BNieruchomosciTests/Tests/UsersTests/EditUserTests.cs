@@ -19,7 +19,7 @@ namespace Tests
             string newName = RandomDataHelper.RandomString(6);
             string lastName = RandomDataHelper.RandomString(6);
             editUser.EditUser(newName, lastName);
-            UserPage userPageAfterEdit = editUser.SubmitUserForm();
+            UserPage userPageAfterEdit = editUser.SubmitForm<UserPage>();
             Assert.IsTrue(userPageAfterEdit.Table.IsDataExistsInTable(newName, lastName, email));
         }
         [Test, Order(2)]

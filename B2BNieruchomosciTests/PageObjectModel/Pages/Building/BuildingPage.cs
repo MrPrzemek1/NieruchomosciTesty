@@ -19,7 +19,7 @@ namespace PageObjectModel.Pages.Building
         public BuildingForm GoToEditBuilding()
         {
             WaitOnTableLoad();
-            Table.AllRowsOnTable.Where(e => !string.IsNullOrEmpty(e.Text)).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
+            Table.AllRowsOnTable.Where(e => !string.IsNullOrEmpty(e.Text) && !e.Text.Contains("Usunięty")).Select(e => e.FindElement(By.LinkText("Edytuj"))).ElementAt(Table.RandomElement()).Click();
             return new BuildingForm(driverManager);
         }
     }

@@ -32,25 +32,13 @@ namespace PageObjectModel.Pages.Building
             Field.PostCode.ClearAndSendKeys(postCode.ToString());
             Field.City.ClearAndSendKeys(city);
             Field.Street.ClearAndSendKeys(street);
-            return SubmitBuildingForm();
+            return SubmitForm<BuildingPage>();
         }
+
         public BuildingForm SubmitIncorrectForm()
         {
             Button.Submit.ClickIfElementIsClickable(driverManager.Driver);
             return new BuildingForm(driverManager);
-        }
-
-        public BuildingPage SubmitBuildingForm()
-        {
-            Button.Submit.ClickIfElementIsClickable(driverManager.Driver);
-            WaitOnTableLoad();
-            return new BuildingPage(driverManager);
-        }
-
-        public void SelectStatus(string status = "Aktywny")
-        {
-            SelectElement selectStatus = new SelectElement(Field.Status);
-            selectStatus.SelectByText(status);
         }
     }
 }

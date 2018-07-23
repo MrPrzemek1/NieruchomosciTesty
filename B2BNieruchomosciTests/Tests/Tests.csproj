@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="BuildingPageTests.cs" />
+    <Compile Include="OfficePageTests.cs" />
     <Compile Include="UsersTests\EditUserTests.cs" />
     <Compile Include="LoginTests\ForgotPasswordTests.cs" />
     <Compile Include="LoginTests\LoginPageTests.cs" />

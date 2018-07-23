@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using PageObjectModel.PageElemets;
-using SeleniumExtras.WaitHelpers;
-using System.Linq;
+﻿using PageObjectModel.PageElemets;
 using TestResources;
 
 namespace PageObjectModel.Pages.Building
