@@ -20,7 +20,7 @@ namespace Tests
             string lastName = RandomDataHelper.RandomString(6);
             editUser.EditUser(newName, lastName);
             UserPage userPageAfterEdit = editUser.SubmitForm<UserPage>();
-            Assert.IsTrue(userPageAfterEdit.Table.IsDataExistsInTable(newName, lastName, email));
+            Assert.IsTrue(userPageAfterEdit.Table.IsDataExistsInTableRows(newName, lastName, email));
         }
         [Test, Order(2)]
         public void BlockUser()

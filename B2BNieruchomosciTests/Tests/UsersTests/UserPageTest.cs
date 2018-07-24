@@ -18,7 +18,7 @@ namespace Tests
             UserForm addUserForm = userPage.GoTo<UserForm>();
             addUserForm.SetNewUserData(email,name,lastName);
             UserPage userPageAfterAddNewUser = addUserForm.SubmitForm<UserPage>();
-            Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTable(name, email, lastName));
+            Assert.IsTrue(userPageAfterAddNewUser.Table.IsDataExistsInTableRows(name, email, lastName));
         }
         [Test]
         public void EmptyEmailFile()

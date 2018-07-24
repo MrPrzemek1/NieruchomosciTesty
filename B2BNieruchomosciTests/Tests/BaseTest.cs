@@ -19,6 +19,7 @@ namespace Tests
         protected string street = RandomDataHelper.RandomString(7);
         protected string city = RandomDataHelper.RandomString(7);
         protected int? randomInt = RandomDataHelper.RandomInt();
+        protected int? randomArea = RandomDataHelper.RandomInt();
 
 
         protected WebDriverWait wait;

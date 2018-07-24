@@ -20,7 +20,7 @@ namespace Tests
             createBuildingForm.FillInTeFormFields(name, street, randomInt, city, "Aktywny");
             BuildingPage buildingPageAfterAddNewBuilding = createBuildingForm.SubmitForm<BuildingPage>();
 
-            Assert.IsTrue(buildingPageAfterAddNewBuilding.Table.IsDataExistsInTable(name, street, city, "Aktywny"));
+            Assert.IsTrue(buildingPageAfterAddNewBuilding.Table.IsDataExistsInTableRows(name, street, city, "Aktywny"));
         }
         [Test]
         public void EditExsitingBuliding()
@@ -28,7 +28,7 @@ namespace Tests
             BuildingPage buildingPage = GoToBuildingPage();
             BuildingForm editBuildingForm = buildingPage.GoToEditBuilding();
             BuildingPage buildingPageAfterEdit = editBuildingForm.EditBuildingData(name,randomInt,city,street);
-            Assert.IsTrue(buildingPageAfterEdit.Table.IsDataExistsInTable(name, street, city, "Aktywny"));
+            Assert.IsTrue(buildingPageAfterEdit.Table.IsDataExistsInTableRows(name, street, city, "Aktywny"));
         }
         [Test]
         public void CreateBuildingWithEmptyName()

@@ -21,12 +21,16 @@ namespace PageObjectModel.PageElemets
 
         public IList<IWebElement> AllCellsOnTable => Table.FindElements(By.TagName("td"));
 
-        public bool IsDataExistsInTable(params string[] szukaneWartosci)
+        public bool IsDataExistsInTableRows(params string[] szukaneWartosci)
         {
             WaitOnTableLoad();
             return AllRowsOnTable.Any(e => szukaneWartosci.All(sw => e.Text.Contains(sw)));
         }
-
+        public bool IsDataExistsInTableCells(params string[] szukaneWartosci)
+        {
+            WaitOnTableLoad();
+            return AllCellsOnTable.Any(e => szukaneWartosci.All(sw => e.Text.Contains(sw)));
+        }
         public int RandomElement()
         {
             Console.WriteLine("Ilość wierszy: {0}",AllRowsOnTable.Count);

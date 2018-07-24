@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using PageObjectModel;
 using PageObjectModel.Pages.Building;
+using System;
 using TestResources;
 
 namespace Tests
@@ -14,12 +15,12 @@ namespace Tests
         [Test]
         public void AddNewOffice()
         {
-
             OfficePage officePage = GoToOfficePage();
             OfficeForm officeForm = officePage.GoTo<OfficeForm>();
-            officeForm.FillInTheOfficeForm(name, randomInt, randomInt);
+            officeForm.FillInTheOfficeForm(name, randomInt, randomArea);
             OfficePage officePageAfterAddNewOffice = officeForm.SubmitForm<OfficePage>();
-            Assert.IsTrue(officePageAfterAddNewOffice.Table.IsDataExistsInTable(name, randomInt.ToString().Replace(" ","")+",00"));
+
+            Assert.IsTrue(officePageAfterAddNewOffice.Table.IsDataExistsInTableRows(name, ConvertInt(randomInt), ConvertInt(randomArea)));
         }
 
         private OfficePage GoToOfficePage()
@@ -33,5 +34,9 @@ namespace Tests
             return new OfficePage(manager);
         }
 
+        private string ConvertInt(int? text)
+        {
+            return text.ToString().Insert(2, " ") + ",00";
+        }
     }
 }
